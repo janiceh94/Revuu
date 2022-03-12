@@ -1,4 +1,4 @@
 module.exports = {
     PORT: process.env.PORT || 4000,
-    //here is mongo URL
+    MONGO_URL: process.env.MONGO_URL,
 }

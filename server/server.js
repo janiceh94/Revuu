@@ -1,5 +1,5 @@
 const path = require("path")
-//require("dotenv").config({path: "../.env"})
+require("dotenv").config({path: "../.env"})
 /* ==== External Modules ==== */
 const express = require("express");
 /* ==== Internal Modules ==== */
@@ -16,7 +16,7 @@ app.use(express.urlencoded({extended: true}))
 app.use(express.json())
 
 /* ====  Routes & Controllers  ==== */
-app.use("/api", routes)
+app.use("/api", routes);
 
 app.all("/api/*", (req, res, next) => {
 	res.send("HOLD UP THESE ARE NOT THE APIS YOU ARE LOOKING FOR")
