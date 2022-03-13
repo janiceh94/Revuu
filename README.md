@@ -23,3 +23,6 @@ As a user I want to have this easily accessible on my mobile device </br>
 - MongoDB
 - JavaScript
 - React
+
+## Additional Information:
+Developed by Audrey Bledsoe, Evan Keith, Janice Kwak, Samuel Mark
