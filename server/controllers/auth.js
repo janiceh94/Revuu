@@ -1,26 +1,23 @@
-const bcrypt = require ('bycrpts');
+const bcrypt = require ('bcryptjs');
 const jwt = require('jsonwebtoken');
 const db = require('../models');
 
 const register = async (req, res) => {
+    // console.log(req.body.email, req.body.password);
     try{
         const foundUser = await db.User.findOne({email: req.body.email})
         if(!foundUser){
-            //User register sucessfull
-            const salt = await bcrypt.genSalt(10)
-            const hash = await bcrypt.hash(req.body.password, salt)
-            const updatedUser = await db.User.findByIdAndUpdate(
-                {_id: foundUser._id},
+            const salt = await bcrypt.genSalt(10);
+            const hash = await bcrypt.hash(req.body.password, salt);
+            const updatedUser = await db.User.create(
                 {
-                    $set: {email: req.body.email},
-                    $set: {password: hash}
+                    email: req.body.email,
+                    password: hash
                 },
-                {new: true}
             )
-            // console.log(updatedUser, "updated user with the salt hash passowrds")
             return res
                 .status(201)
-                .json({status: 201, message: 'Registered', updatedUser})
+                .json({status: 201, message: 'We did it!'})
         }
         return res 
             .status(400)
