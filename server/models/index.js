@@ -10,5 +10,6 @@ mongoose
     .catch((err) => console.log(`mango failed at Error: ${err}`))
 
 module.exports = {
-    Review: require("./Review")
+    Review: require("./Review"),
+    User: require('./User')
 }
