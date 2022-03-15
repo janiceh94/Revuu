@@ -1,4 +1,5 @@
 module.exports = {
     test: require("./test"),
-    auth: require('./auth')
+    auth: require('./auth'),
+    review: require('./review'),
 }
