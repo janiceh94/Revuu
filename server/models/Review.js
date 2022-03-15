@@ -3,21 +3,21 @@ const Schema = mongoose.Schema;
 
 const commentSchema = new Schema ({
     body: {type: String, required: true}, 
-    user: {type: String, required: true}, //{type: Schema.Types.ObjectId, ref: “User”} 
-    likes: {type: Number}
+    user: {type: Schema.Types.ObjectId,ref: "User"}, 
+    likes: [{type: Schema.Types.ObjectId,ref: "User"}],
 })
 
 const reviewSchema = new Schema(
     {
-        reviewItem: {type: String}, //, required: true},
+        reviewItem: {type: String, required: true},
         title: {type: String, required: true},
-        category: {type: String}, //, required: true},
-        body: {type:String}, //, required: true},
-        rating: {type: Number}, //, required: true},
-        upVote: {type: Number}, 
-        user: {type: String}, //referenced data to be added later {type: Schema.Types.ObjectId, ref: “User”} 
+        category: {type: String, required: true}, 
+        body: {type:String, required: true},
+        rating: {type: Number, required: true},
+        upVote: [{type: Schema.Types.ObjectId,ref: "User"}], 
+        user: {type: Schema.Types.ObjectId,ref: "User"},
         date: {type: Date},
-        comments: [commentSchema]
+        comments: [commentSchema],
     },
     {
         timestamps: true
