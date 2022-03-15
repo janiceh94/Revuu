@@ -3,8 +3,8 @@ const Schema = mongoose.Schema;
 
 const commentSchema = new Schema ({
     body: {type: String, required: true}, 
-    user: {type: Schema.Types.ObjectId,ref: "User"}, 
-    likes: [{type: Schema.Types.ObjectId,ref: "User"}],
+    user: {type: Schema.Types.ObjectId, ref: "User"}, 
+    likes: [{type: Schema.Types.ObjectId, ref: "User"}],
 })
 
 const reviewSchema = new Schema(
