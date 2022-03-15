@@ -11,5 +11,6 @@ mongoose
 
 module.exports = {
     Review: require("./Review"),
-    User: require('./User')
+    User: require('./User'),
+    Likes: require('./Likes'),
 }
