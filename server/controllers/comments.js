@@ -18,6 +18,7 @@ const create = (req, res) => {
         }
         const newComment = req.body;
         foundReview.comments.push(newComment);
+        foundReview.save();
         return res.status(201).json({
             message: "Successfully created!",
             data: newComment
@@ -25,7 +26,7 @@ const create = (req, res) => {
     })
 }
 
-const update = () => {
+const update = (req, res) => {
     db.Review.findById(req.params.rid, (err, foundReview) => {
         if(err) {
             return res.status(400).json({
@@ -38,6 +39,7 @@ const update = () => {
 
         foundReview.comments.splice(commentIdx, 1, updatedComment);
 
+        foundReview.save();
         return res.status(202).json({
             message: "Successfully updated!",
             data: updatedComment
@@ -45,7 +47,7 @@ const update = () => {
     })
 }
 
-const destroy = () => {
+const destroy = (req, res) => {
     db.Review.findById(req.params.rid, (err, foundReview) => {
         if(err) {
             return res.status(400).json({
@@ -57,7 +59,7 @@ const destroy = () => {
         const deletedComment = foundReview.comments[commentIdx];
 
         foundReview.comments.splice(commentIdx, 1);
-
+        foundReview.save();
         return res.status(201).json({
             message: "Successfully deleted!",
             data: deletedComment
