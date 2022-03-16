@@ -32,6 +32,17 @@ const show = (req, res) => {
 
 const create = (req, res) => {
     db.Review.create(req.body, (err, savedReview) => {
+        db.User.findById(req.body.user,(err, foundUser) => {
+            if(err){
+                return res.status(400).json({
+                    message: 'Error finding user',
+                    error: err,
+                })
+            }
+            //foundUser.reviews.push(savedReview._id);
+            foundUser.reviews.push(savedReview);
+            foundUser.save();
+        });
         if(err){
             return res.status(400).json({
                 message: 'Sorry',
@@ -66,6 +77,17 @@ const update = (req, res) => {
 
 const destroy = (req, res) => {
     db.Review.findByIdAndDelete(req.params.id, (err, deletedReview) => {
+        db.User.findById(deletedReview.user, (err, foundUser) => {
+            if(err){
+                return res.status(400).json({
+                    message: 'Error finding User',
+                    error: err,
+                })
+            }
+            console.log("body ",req.body, "params ", req.params);
+            foundUser.reviews.splice(foundUser.reviews.indexOf(deletedReview),1);
+            foundUser.save();
+        })
         if(err){
             return res.status(400).json({
                 message: 'Sorry',

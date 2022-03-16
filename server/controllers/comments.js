@@ -10,20 +10,25 @@ const db = require('../models');
 
 const create = (req, res) => {
     db.Review.findById(req.params.rid, (err, foundReview) => {
-        if(err) {
-            return res.status(400).json({
-                message: "Nope",
-                error: err
+        db.User.findById(req.body.user, (err, commentingUser) => {
+            if(err) {
+                return res.status(400).json({
+                    message: "Nope",
+                    error: err
+                })
+            }
+            console.log("foundUser", commentingUser, "req.body", req.body);
+            const newComment = req.body;
+            foundReview.comments.push(newComment);
+            commentingUser.comments.push(foundReview);
+            foundReview.save();
+            commentingUser.save();
+            return res.status(201).json({
+                message: "Successfully created!",
+                data: newComment
             })
-        }
-        const newComment = req.body;
-        foundReview.comments.push(newComment);
-        foundReview.save();
-        return res.status(201).json({
-            message: "Successfully created!",
-            data: newComment
-        })
-    })
+        });
+    });
 }
 
 const update = (req, res) => {
