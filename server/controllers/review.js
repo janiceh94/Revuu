@@ -32,6 +32,10 @@ const show = (req, res) => {
 
 const create = (req, res) => {
     db.Review.create(req.body, (err, savedReview) => {
+        db.User.findById(req.body.user,(err, foundUser) => {
+            console.log("found User",foundUser)
+        });
+        console.log(req.body);
         if(err){
             return res.status(400).json({
                 message: 'Sorry',
