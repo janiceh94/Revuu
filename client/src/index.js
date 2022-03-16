@@ -1,10 +1,13 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import App from './components/App';
+import { BrowserRouter } from 'react-router-dom';
+import FakePage from './components/FakePage';
 
 ReactDOM.render(
-  <React.StrictMode>
-    <App />
-  </React.StrictMode>,
+  <BrowserRouter>
+    <React.StrictMode>
+      <FakePage />
+    </React.StrictMode>
+  </BrowserRouter>,
   document.getElementById('root')
 );
