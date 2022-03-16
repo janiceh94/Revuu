@@ -3,7 +3,8 @@ const Schema = mongoose.Schema;
 
 const commentSchema = new Schema ({
     body: {type: String, required: true}, 
-    user: {type: Schema.Types.ObjectId, ref: "User"}, 
+    user: {type: Schema.Types.ObjectId, ref: "User", required: true}, 
+    //REVIEW CREATE ROUTES AND CONTROLLERS FOR LIKES???
     likes: [{type: Schema.Types.ObjectId, ref: "User"}],
 })
 
