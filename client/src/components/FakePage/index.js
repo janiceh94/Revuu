@@ -2,7 +2,7 @@ import FooterCR from "../FooterCR";
 import FooterSticky from "../FooterSticky";
 import Header from "../Header";
 import "./FakePage.css";
-function App() {
+function FakePage() {
   return (
     <div className="App">
       <Header/>
@@ -12,4 +12,4 @@ function App() {
   );
 }
 
-export default App;
+export default FakePage;
