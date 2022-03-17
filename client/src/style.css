@@ -1,21 +1,71 @@
+@import url('https://css.gg/css');
+@import url('https://fonts.googleapis.com/css2?family=Righteous&family=Roboto&display=swap');
+
 :root{
     --neutral-color :           #FAF9F4;
     --primary-color :           #B207C1;
     --primary-color-lighter:    #DDA3E0;
-    --secondary-color:          #fbfbf7;
+    --primary-color-Darker:     #5e0067;
+    --secondary-color:          #ED416A;
     --gray:                     #BCBCBC;
     --login-color:              #50D76D;
 }
 
 /*
-//////////////////////////////////////////////////////
-SECTION Global Page Details
-//////////////////////////////////////////////////////
+SECTION Global Page Details. Please make note of any changes
 */
 
 body{
     background-color: var(--neutral-color);
+    font-family: 'Roboto', sans-serif;
 }
+
+.App{
+    margin: auto;
+    width: 350px;
+    display:flex;
+    flex-direction: column;
+    align-items: center;
+    padding:0 1rem 0 1rem;
+}
+
+#logo{
+    font-size: 24pt;
+    color: var(--primary-color);
+    font-family: 'Righteous', cursive;
+}
+
 p{
+    color: var(--primary-color-Darker);
+}
+
+small{
     color: var(--gray);
+    font-family: 'Righteous', cursive;
+}
+
+.gg-check-o {
+    color: var(--gray); 
+}
+
+button{
+    font-family: 'Righteous', cursive;
+    background-color: var(--primary-color-lighter);
+    color:var(--primary-color);
+    border: none;
+    border-radius: 5px;
+    padding:5px 10px 5px 10px;
+}
+
+button:hover{
+    font-family: 'Righteous', cursive;
+    background-color: var(--primary-color);
+    color:var(--neutral-color);
+    border: none;
+    border-radius: 5px;
+    padding:5px 10px 5px 10px;
+}
+
+img{
+    width: 75%;
 }
