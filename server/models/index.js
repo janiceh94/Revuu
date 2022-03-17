@@ -7,8 +7,9 @@ mongoose
     .then(() => {
         console.log(`MANGODB connected at ${db.host}: ${db.port}! Delightful!`)
     })
-    .catch((err) => console.log(`mango failed at Error: ${err}`))
+    .catch((err) => console.log(`mango dramatically fainted at Error: ${err}`))
 
 module.exports = {
-    Review: require("./Review")
+    Review: require("./Review"),
+    User: require('./User')
 }

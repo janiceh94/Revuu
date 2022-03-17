@@ -1,0 +1,21 @@
+:root{
+    --neutral-color :           #FAF9F4;
+    --primary-color :           #B207C1;
+    --primary-color-lighter:    #DDA3E0;
+    --secondary-color:          #fbfbf7;
+    --gray:                     #BCBCBC;
+    --login-color:              #50D76D;
+}
+
+/*
+//////////////////////////////////////////////////////
+SECTION Global Page Details
+//////////////////////////////////////////////////////
+*/
+
+body{
+    background-color: var(--neutral-color);
+}
+p{
+    color: var(--gray);
+}
