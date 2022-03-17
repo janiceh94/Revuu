@@ -4,6 +4,7 @@ import { BrowserRouter } from 'react-router-dom';
 import FakePage from './components/FakePage';
 import "./style.css";
 
+
 ReactDOM.render(
   <BrowserRouter>
     <React.StrictMode>
