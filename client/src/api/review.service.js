@@ -7,7 +7,7 @@ const getAllReviews = () => {
 }
 
 const get = (id) => {
-    return apiClient.get(`${posts}/${id}`);
+    return apiClient.get(`${reviews}/${id}`);
 }
 
 const create = (data) => {
@@ -15,7 +15,7 @@ const create = (data) => {
 }
 
 const update = (id, data) => {
-    return apiClient.put(`${reviews}/${id}`);
+    return apiClient.put(`${reviews}/${id}`, data);
 }
 
 const destroy = (id) => {
