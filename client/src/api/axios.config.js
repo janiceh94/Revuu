@@ -1,6 +1,8 @@
 import axios from 'axios';
 
-const backendAPI = 'http://revuu.herokuapp.com/api';
+
+const backendAPI = 'http://localhost:4000/api';
+// const backendAPI = 'http://revuu.herokuapp.com/api';
 
 let user = JSON.parse(localStorage.getItem('user'))
 
