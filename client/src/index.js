@@ -4,11 +4,10 @@ import { BrowserRouter } from 'react-router-dom';
 import FakePage from './components/FakePage';
 import "./style.css";
 
-
 ReactDOM.render(
   <BrowserRouter>
     <React.StrictMode>
-      <FakePage />
+      <App />
     </React.StrictMode>
   </BrowserRouter>,
   document.getElementById('root')
