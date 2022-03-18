@@ -5,8 +5,10 @@ export default function Reviews() {
 	const [reviews, setReviews] = useState([]);
 
 	const fetchReviews = async () => {
-		await apiClient.get(`/review`).then((res) => {
+		await apiClient.get(`/api/review`)
+		.then((res) => {
 			setReviews(res.data.data);
+			console.log(res.data.data);
 		});
 	};
 
@@ -17,9 +19,9 @@ export default function Reviews() {
 	return (
 		<div>
 			<h1>Reviews</h1>
-			{reviews.map((user, i) => {
-				return <h3 key={i}>{review.reviewItem}</h3>;
-			})}
+			{reviews.map((review, i) => {
+                return <h3 key={i}>{review.reviewItem}</h3>
+            })}
 		</div>
 	);
 }
