@@ -17,7 +17,7 @@ export default function Reviews() {
 	return (
 		<div>
 			<h1>Reviews</h1>
-			{reviews.map((user, i) => {
+			{reviews.map((review, i) => {
 				return <h3 key={i}>{review.reviewItem}</h3>;
 			})}
 		</div>
