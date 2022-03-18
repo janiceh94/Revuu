@@ -5,7 +5,7 @@ import Home from '../../page/Home';
 import "./FakePage.css";
 function FakePage() {
   return (
-    <div className="App">
+    <div className="FakePage">
       <Header/>
       <span id="logo">Revuu</span>
       <h1>Fake page for testing whatever you want. Make sure to delete me.</h1>
