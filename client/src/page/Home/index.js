@@ -8,7 +8,6 @@ export default function Reviews() {
 		await apiClient.get(`/api/review`)
 		.then((res) => {
 			setReviews(res.data.data);
-			console.log(res.data.data);
 		});
 	};
 
