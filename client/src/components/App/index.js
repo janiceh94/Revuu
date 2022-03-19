@@ -53,7 +53,8 @@ function App() {
       return (
         <div className="App">
         <Routes>
-        <Route path="/" element={<Landing checkUserActive={() => checkLogin()}/>}/>          <Route path='home' element = {<Home />}/>
+        <Route path="/" element={<Landing checkUserActive={() => dispatch({type: "setIsLoggedIn", payload: true})}/>}/>          
+        <Route path='home' element = {<Home />}/>
           <Route path='profile' element = {<UserProfile />}/>
           {/* Delete FakePage later */}
           <Route path='fake-page' element = {<FakePage />}/> 
@@ -67,7 +68,7 @@ function App() {
       return(
         <div className="App">
         <Routes>
-          <Route path="/" element={<Landing checkUserActive={() => checkLogin()}/>}/>
+          <Route path="/" element={<Landing checkUserActive={() => dispatch({type: "setIsLoggedIn", payload: true})}/>}/>
         </Routes>
     </div>
       )

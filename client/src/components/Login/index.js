@@ -1,16 +1,20 @@
-import { useState } from "react"
-import * as authService from "../../api/auth.service"
+import {useNavigate} from 'react-router-dom';
+import { useState } from "react";
+import * as authService from "../../api/auth.service";
 
 export default function Login({checkUserActive}) {
     const [ email, setEmail ] = useState("");
     const [ password, setPassword ] = useState("");
+    const navigate = useNavigate();
 
     async function handleSubmit(e) {
         e.preventDefault();
         await authService.login(email, password).then(() => {
             {checkUserActive()}
-            setEmail = ""
-            setPassword = ""
+            setEmail("");
+            setPassword("");
+            console.log('handle submit')
+            navigate('/home') 
         })
     }
 
@@ -35,7 +39,12 @@ export default function Login({checkUserActive}) {
 						placeholder="password"
                         />
                 </label>
-                <input type="submit" onSubmit={handleSubmit} />
+                <div>
+                <button onClick={handleSubmit}>
+						Login
+					</button>
+                </div>
+                {/* <input type="submit" onSubmit={handleSubmit} /> */}
             </form>
         </div>
     )

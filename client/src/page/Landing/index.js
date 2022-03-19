@@ -5,7 +5,7 @@ import Login from "../../components/Login";
 function Landing({checkUserActive}) {
     return (
       <div className="landing">
-          <Login checkUserActive={() => checkUserActive()}/>
+          <Login checkUserActive={checkUserActive}/>
         <NavLink to ='home'
             style = {({isActive}) => ({
                 color: isActive ? 'green' : 'blue'
