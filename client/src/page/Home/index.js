@@ -1,7 +1,7 @@
 import apiClient from "../../api/axios.config";
 import { useEffect, useState } from "react";
 
-export default function Reviews() {
+export default function Home() {
 	const [reviews, setReviews] = useState([]);
 
 	const fetchReviews = async () => {
@@ -17,7 +17,7 @@ export default function Reviews() {
 
 	return (
 		<div>
-			<h1>Reviews</h1>
+			<h1>Home</h1>
 			{reviews.map((review, i) => {
 				return <h3 key={i}>{review.reviewItem}</h3>;
 			})}
