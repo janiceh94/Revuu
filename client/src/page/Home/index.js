@@ -1,7 +1,7 @@
 import apiClient from "../../api/axios.config";
 import { useEffect, useState } from "react";
 
-export default function Reviews() {
+export default function Home() {
 	const [reviews, setReviews] = useState([]);
 
 	const fetchReviews = async () => {
