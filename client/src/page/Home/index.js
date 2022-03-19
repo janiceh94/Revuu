@@ -17,7 +17,7 @@ export default function Home() {
 
 	return (
 		<div>
-			<h1>Reviews</h1>
+			<h1>Home</h1>
 			{reviews.map((review, i) => {
 				return <h3 key={i}>{review.reviewItem}</h3>;
 			})}
