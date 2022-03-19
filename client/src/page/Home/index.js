@@ -5,7 +5,8 @@ export default function Reviews() {
 	const [reviews, setReviews] = useState([]);
 
 	const fetchReviews = async () => {
-		await apiClient.get(`/review`).then((res) => {
+		await apiClient.get(`/api/review`)
+		.then((res) => {
 			setReviews(res.data.data);
 		});
 	};
