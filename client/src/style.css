@@ -1,14 +1,13 @@
 @import url('https://css.gg/css');
-@import url('https://fonts.googleapis.com/css2?family=Righteous&family=Roboto&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Overpass+Mono:wght@300&family=Righteous&family=Roboto&display=swap');
 
 :root{
-    --neutral-color :           #FAF9F4;
-    --primary-color :           #B207C1;
-    --primary-color-lighter:    #DDA3E0;
-    --primary-color-Darker:     #5e0067;
-    --secondary-color:          #ED416A;
-    --gray:                     #BCBCBC;
-    --login-color:              #50D76D;
+    --black :                   #000000;
+    --primary-color :           #01B493;
+    --primary-color-lighter:    #05dab3;
+    --primary-color-Darker:     #018a71;
+    --secondary-gray:           #2f2f2f;
+    --secondary-offwhite:       #f6efef;
 }
 
 /*
@@ -16,56 +15,95 @@ SECTION Global Page Details. Please make note of any changes
 */
 
 body{
-    background-color: var(--neutral-color);
-    font-family: 'Roboto', sans-serif;
+    background: linear-gradient(180deg, var(--primary-color) 0%, var(--black) 40%);
+    background-color: var(--black);
+    background-repeat: no-repeat;
+    font-family: 'Overpass Mono', monospace;
+    color: var(--secondary-offwhite)
 }
 
 .App{
     margin: auto;
+    /* FIXME SUBJECT TO CHANGE FOR ADAPTIVE VIEW */
     width: 350px;
-    display:flex;
-    flex-direction: column;
-    align-items: center;
-    padding:0 1rem 0 1rem;
 }
 
 #logo{
     font-size: 24pt;
+    color: var(--secondary-offwhite);
+    font-family: 'Righteous', cursive;
+}
+
+h1{
+    
+}
+
+p{
+    color: var(--secondary-offwhite);
+}
+
+small{
     color: var(--primary-color);
     font-family: 'Righteous', cursive;
 }
 
-p{
-    color: var(--primary-color-Darker);
-}
-
-small{
-    color: var(--gray);
-    font-family: 'Righteous', cursive;
-}
-
-.gg-check-o {
-    color: var(--gray); 
+.icon {
+    width: 100px;
+    height: 100px;
 }
 
 button{
     font-family: 'Righteous', cursive;
-    background-color: var(--primary-color-lighter);
-    color:var(--primary-color);
+    background-color:rgba(00, 00, 00, 00);
+    color: inherit;
     border: none;
-    border-radius: 5px;
     padding:5px 10px 5px 10px;
+    /* opacity:50%; */
 }
 
-button:hover{
-    font-family: 'Righteous', cursive;
-    background-color: var(--primary-color);
-    color:var(--neutral-color);
-    border: none;
-    border-radius: 5px;
-    padding:5px 10px 5px 10px;
+/* button:hover{
+    opacity: 1;
+} */
+
+a{
+    color: var(--primary-color);
+    text-decoration: none;
+}
+
+a:active{
+    color: var(--secondary-offwhite);
+    text-decoration: none;
 }
 
 img{
     width: 75%;
 }
+/* !SECTION */
+/*
+SECTION PAGES: HEADER
+*/
+
+/* !SECTION */
+/*
+SECTION PAGES: FOOTER STICKY
+*/
+
+/* !SECTION */
+/*
+SECTION PAGES: FOOTER CR
+*/
+
+/* !SECTION */
+/*
+SECTION PAGES: LANDING
+*/
+
+/* !SECTION */
+/*
+SECTION PAGES: HOME
+*/
+
+/* !SECTION */
+/*
+SECTION PAGES: USER PROFILE
+*/

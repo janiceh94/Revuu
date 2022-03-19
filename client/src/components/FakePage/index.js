@@ -16,7 +16,8 @@ function FakePage() {
       <button>button style</button>
       <p>p text</p>
       <a href="">Default Link</a>
-      <div className="gg-check-o"></div>Icon test
+      <div className="gg-check-o icon"></div>Icon test
+      <div className="gg-phone icon"></div>
       <img src="https://i.kym-cdn.com/photos/images/original/001/072/714/40b.gif"/>
       <FooterSticky/>
       <Home/>
