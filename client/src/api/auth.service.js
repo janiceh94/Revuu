@@ -1,7 +1,7 @@
 import apiClient from "./axios.config";
 
-const auth = '/auth';
-const users = '/user';
+const auth = 'api/auth';
+const users = 'api/user';
 
 const register = (email, password) => {
     return apiClient    

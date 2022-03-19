@@ -1,8 +1,11 @@
-import {NavLink} from 'react-router-dom';
+import { NavLink } from "react-router-dom";
+import Login from "../../components/Login";
 
-function Landing() {
+
+function Landing({checkUserActive}) {
     return (
       <div className="landing">
+          <Login checkUserActive={checkUserActive}/>
         <NavLink to ='home'
             style = {({isActive}) => ({
                 color: isActive ? 'green' : 'blue'
