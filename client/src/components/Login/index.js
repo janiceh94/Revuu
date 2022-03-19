@@ -17,7 +17,7 @@ export default function Login({checkUserActive}) {
     return (
         <div>
             <form>
-                <label>Email
+                <label htmlFor="email">Email
                 <input	
 						onChange={(e) => setEmail(e.target.value)}
 						value={email}
@@ -26,7 +26,7 @@ export default function Login({checkUserActive}) {
 						placeholder="email"
                         />
                 </label>
-                <label>Password
+                <label htmlFor="password">Password
                  <input	
 						onChange={(e) => setPassword(e.target.value)}
 						value={password}
