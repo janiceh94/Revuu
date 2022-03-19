@@ -19,8 +19,8 @@ export default function Reviews() {
 		<div>
 			<h1>Reviews</h1>
 			{reviews.map((review, i) => {
-                return <h3 key={i}>{review.reviewItem}</h3>
-            })}
+				return <h3 key={i}>{review.reviewItem}</h3>;
+			})}
 		</div>
 	);
 }

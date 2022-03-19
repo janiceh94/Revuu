@@ -2,11 +2,14 @@ import FooterCR from "../FooterCR";
 import FooterSticky from "../FooterSticky";
 import Header from "../Header";
 import Home from '../../page/Home';
+import ReviewsList from "../ReviewsList";
 import "./FakePage.css";
 function FakePage() {
   return (
     <div className="FakePage">
+      <h1>Test</h1>
       <Header/>
+      <ReviewsList/>
       <span id="logo">Revuu</span>
       <h1>Fake page for testing whatever you want. Make sure to delete me.</h1>
       <small>small style</small>
