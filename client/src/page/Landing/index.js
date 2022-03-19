@@ -1,20 +1,21 @@
 import {NavLink} from 'react-router-dom';
-function FooterSticky() {
+
+function Landing() {
     return (
-      <div className="FootStick">
+      <div className="landing">
         <NavLink to ='home'
             style = {({isActive}) => ({
                 color: isActive ? 'green' : 'blue'
             })}>
                 Home
         </NavLink>
-        <NavLink to ='/review'
+        <NavLink to ='review'
             style = {({isActive}) => ({
                 color: isActive ? 'green' : 'blue'
             })}>
                 Write a Review
         </NavLink>
-        <NavLink to ='/profile'
+        <NavLink to ='profile'
             style = {({isActive}) => ({
                 color: isActive ? 'green' : 'blue'
             })}>
@@ -24,5 +25,4 @@ function FooterSticky() {
     );
   }
   
-  export default FooterSticky;
-
+  export default Landing;
