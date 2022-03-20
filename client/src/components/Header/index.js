@@ -1,12 +1,15 @@
-// import { Redirect } from 'react-router'
+import { useNavigate } from 'react-router-dom';
 import * as authService from "../../api/auth.service";
 
 function Header() {
+
+    const navigate=useNavigate();
 
     function signOut(e) {
         e.preventDefault();
         authService.logout();
         console.log('logout');
+        navigate("/");
     }
 
     return (    
