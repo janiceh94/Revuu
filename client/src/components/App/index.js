@@ -1,5 +1,6 @@
 import {BrowserRouter, Route, Routes} from 'react-router-dom';
 import Header from "../Header"
+import FootStick from "../FooterSticky";
 import FakePage from "../FakePage";
 import Home from '../../page/Home';
 import UserProfile from '../../page/UserProfile'; 
@@ -64,6 +65,7 @@ function App() {
           <Route path="review/:id" element={<ShowReview />} />
           <Route path="review/:id/edit" element={<EditReview />} />
         </Routes>
+        <FootStick/>
     </div>
       );
   } else {
@@ -81,6 +83,7 @@ function App() {
           <Route path="review/:id" element={<ShowReview />} />
           <Route path="review/:id/edit" element={<EditReview />} />
         </Routes>
+        <FootStick/>
     </div>
       )
   }

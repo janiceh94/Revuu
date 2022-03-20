@@ -1,25 +1,19 @@
-import {NavLink} from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 function FooterSticky() {
+
+    const navigate=useNavigate();
+
     return (
       <div className="FootStick">
-        <NavLink to ='home'
-            style = {({isActive}) => ({
-                color: isActive ? 'green' : 'blue'
-            })}>
-                Home
-        </NavLink>
-        <NavLink to ='/review'
-            style = {({isActive}) => ({
-                color: isActive ? 'green' : 'blue'
-            })}>
-                Write a Review
-        </NavLink>
-        <NavLink to ='/profile'
-            style = {({isActive}) => ({
-                color: isActive ? 'green' : 'blue'
-            })}>
-                Profile
-        </NavLink>
+        <button onClick={
+            () => navigate('/home')
+        }>Home</button>
+        <button onClick={
+            () => navigate('/review')
+        }>Review</button>
+        <button onClick={
+            () => navigate('/profile')
+        }>Profile</button>
       </div>
     );
   }
