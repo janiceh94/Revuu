@@ -26,7 +26,9 @@ export default function Home() {
 			<h2>Header</h2>
 			{reviews.map((review, i) => {
 				return <h3 key={i}>{review.reviewItem}
-				<button onClick = {review._id}>View Review</button>
+				<div>
+				<button onClick = {() => (console.log(review._id))}>View Review</button>
+				</div>
 				</h3>;
 			})}
 			<h2>FooterSticky</h2>
