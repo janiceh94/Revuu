@@ -7,7 +7,7 @@
     --primary-color-lighter:    #05dab3;
     --primary-color-Darker:     #018a71;
     --secondary-gray:           #2f2f2f;
-    --tertiary-gray:            #575757;
+    --tertiary-gray:            #808080;
     --secondary-offwhite:       #f6efef;
 }
 
@@ -109,7 +109,11 @@ SECTION PAGES: FOOTER STICKY
 /*
 SECTION PAGES: FOOTER CR
 */
-
+#FootCR > p {
+    padding: 0.5rem;
+    font-size: 10pt;
+    color: var(--tertiary-gray);
+}
 /* !SECTION */
 /*
 SECTION PAGES: LANDING
