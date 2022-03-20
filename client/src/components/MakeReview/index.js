@@ -6,6 +6,7 @@ import * as reviewService from "../../api/review.service";
 export default function MakeReview({checkUserActive}) {
     const navigate = useNavigate();
     const [ data, setData ] = useState({
+        image: "https://picsum.photos/500?grayscale",
         reviewItem: "",
         title: "",
         category: "",
@@ -39,7 +40,19 @@ export default function MakeReview({checkUserActive}) {
 
     return(
         <div> 
+            <img src={data.image} alt="random_image"/>
             <form>
+            <label>
+                Please add an image URL or we will use the image above:
+                <br/>
+                    <input 
+                    onChange={(e) => setData({image: e.target.value})}
+                    type="text" 
+                    name="image"
+                    value={data.image}
+                    placeholder="Image URL"
+                    /> 
+                </label><br/>
                 <label>
                 Noun*
                 <br/>
