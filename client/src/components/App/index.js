@@ -69,6 +69,14 @@ function App() {
         <div className="App">
         <Routes>
           <Route path="/" element={<Landing checkUserActive={() => dispatch({type: "setIsLoggedIn", payload: true})}/>}/>
+          {/* comment out  */}
+          <Route path='home' element = {<Home />}/>
+          <Route path='profile' element = {<UserProfile />}/>
+          {/* Delete FakePage later */}
+          <Route path='fake-page' element = {<FakePage />}/> 
+          <Route path="review" element={<CreateReview  />}/>
+          <Route path="review/:id" element={<ShowReview />} />
+          <Route path="review/:id/edit" element={<EditReview />} />
         </Routes>
     </div>
       )
