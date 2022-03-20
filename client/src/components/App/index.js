@@ -1,4 +1,5 @@
 import {BrowserRouter, Route, Routes} from 'react-router-dom';
+import Header from "../Header"
 import FakePage from "../FakePage";
 import Home from '../../page/Home';
 import UserProfile from '../../page/UserProfile'; 
@@ -52,6 +53,7 @@ function App() {
   if (isLoggedIn) {
       return (
         <div className="App">
+          <Header/>
         <Routes>
         <Route path="/" element={<Landing checkUserActive={() => dispatch({type: "setIsLoggedIn", payload: true})}/>}/>          
         <Route path='home' element = {<Home />}/>
@@ -67,6 +69,7 @@ function App() {
   } else {
       return(
         <div className="App">
+          <Header/>
         <Routes>
           <Route path="/" element={<Landing checkUserActive={() => dispatch({type: "setIsLoggedIn", payload: true})}/>}/>
           {/* comment out  */}
