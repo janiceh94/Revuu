@@ -17,7 +17,6 @@ export default function MakeReview({checkUserActive}) {
 
     const handleSubmit = async(e) => {
         e.preventDefault();
-        console.log("here");
         if(Object.values(data).includes("") || Object.values(data).includes(undefined)){
             alert("Please fill out all fields");
         }else if (data.rating > 5 || data.rating < 0){
@@ -27,6 +26,7 @@ export default function MakeReview({checkUserActive}) {
                 .then((err, createdReview)=> {
                     console.log(createdReview);
                     // {checkUserActive()}
+                    setData({image: ""});
                     setData({reviewItem: ""});
                     setData({title: ""});
                     setData({category: ""});
@@ -40,7 +40,7 @@ export default function MakeReview({checkUserActive}) {
 
     return(
         <div> 
-            <img src={data.image} alt="random_image"/>
+            <img src={data.image} alt="image_url"/>
             <form>
             <label>
                 Please add an image URL or we will use the image above:
