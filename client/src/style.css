@@ -7,6 +7,7 @@
     --primary-color-lighter:    #05dab3;
     --primary-color-Darker:     #018a71;
     --secondary-gray:           #2f2f2f;
+    --tertiary-gray:            #575757;
     --secondary-offwhite:       #f6efef;
 }
 
@@ -97,7 +98,13 @@ SECTION PAGES: HEADER
 /*
 SECTION PAGES: FOOTER STICKY
 */
-
+#FootStick{
+    position: sticky;
+    bottom:0;
+    background-color: var(--primary-color);
+    display: flex;
+    justify-content: space-around;
+}
 /* !SECTION */
 /*
 SECTION PAGES: FOOTER CR

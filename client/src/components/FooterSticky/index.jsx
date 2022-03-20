@@ -4,7 +4,7 @@ function FooterSticky() {
     const navigate=useNavigate();
 
     return (
-      <div className="FootStick">
+      <div id="FootStick">
         <button onClick={
             () => navigate('/home')
         }>Home</button>
