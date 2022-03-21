@@ -2,11 +2,13 @@ import React from 'react';
 import {useNavigate} from 'react-router-dom';
 import { useState } from "react";
 import * as reviewService from "../../api/review.service";
+import FakePage from '../FakePage';
 
 export default function MakeReview({checkUserActive}) {
     const navigate = useNavigate();
     const [ data, setData ] = useState({
-        link: "https://picsum.photos/500?grayscale",
+        webLink: "",
+        imageLink: "https://picsum.photos/500?grayscale",
         reviewItem: "",
         title: "",
         category: "",
@@ -22,12 +24,15 @@ export default function MakeReview({checkUserActive}) {
             alert("Please fill out all fields");
         }else if (data.rating > 5 || data.rating < 0){
             alert("Please rate the noun from 0-5.");
+        } else if (data.category === "Please Select") {
+            alert("Please select a category.");
         } else {
             await reviewService.create(data)
                 .then((err, createdReview)=> {
                     //console.log(createdReview);
                     // {checkUserActive()}
-                    setData({link: ""});
+                    setData({webLink: ""});
+                    setData({imageLink: ""});
                     setData({reviewItem: ""});
                     setData({title: ""});
                     setData({category: ""});
@@ -35,26 +40,25 @@ export default function MakeReview({checkUserActive}) {
                     setData({rating: undefined});
                     setData({user: ""});
                 })
-        }
-        
-    }
+        };
+    };
 
     return(
         <div> 
-            <img id="image" src={data.link} alt="item_image"/>
+            <img id="image" src={data.imageLink} alt="item_image"/>
             <form>
             <label>
                 <br/>
                     <label>Image URL </label>
                     <label class="switch">
                     <input 
-                         onChange={(e) => {
+                        onChange={(e) => {
                             if(e.target.checked){
                                 document.querySelector('#image').style.display = 'none';
                             } else {
                                 document.querySelector('#image').style.display = 'block';
                             };
-                         }} 
+                        }} 
                         id="slider" 
                         type="checkbox"/>
                     <span class="slider round"></span>
@@ -62,7 +66,15 @@ export default function MakeReview({checkUserActive}) {
                     <label> Web Link</label>
                     <br/>
                     <input 
-                    onChange={(e) => setData({link: e.target.value})}
+                    onChange={(e) => {
+                        if(document.querySelector('#image').style.display === 'none'){
+                            setData({webLink: e.target.value});
+                            setData({imageLink: "https://picsum.photos/500?grayscale"});
+                        } else {
+                            setData({webLink: ""});
+                            setData({imageLink: e.target.value});
+                        };
+                    }}
                     type="text" 
                     name="link"
                     value={data.link}
@@ -80,27 +92,32 @@ export default function MakeReview({checkUserActive}) {
                     placeholder="Title*"
                     />
                 </label><br/>
-                <label>
-                Noun*
-                <br/>
-                    <input 
-                    onChange={(e) => setData({reviewItem: e.target.value})}
-                    type="text" 
-                    name="reviewItem"
-                    value={data.reviewItem}
-                    placeholder="Noun*"
-                    /> 
-                </label><br/>
-                <label> 
+                <label for="selector"> 
                 Category*
                 <br/>
-                    <input 
+                    <select id="selector"
                     onChange={(e) => setData({category: e.target.value})}
-                    type="text" 
                     name="category"
-                    value={data.category}
-                    placeholder="Category*"
-                    /> 
+                    > 
+                        <option>Please Select</option> 
+                        <option>Restaurants</option>
+                        <option>Tech Products</option>
+                        <option>Cooking Gagets</option>
+                        <option>Books</option>
+                        <option>Destinations/Landmarks</option>
+                        <option>Clothes/Accessories</option>
+                        <option>Makeup</option>
+                        <option>Movies/TV Shows</option>
+                        <option>Delivery Services</option>
+                        <option>Repair Services</option>
+                        <option>Videos/Streams</option>
+                        <option>Music</option>
+                        <option>Videogames</option>
+                        <option>Medical/Veterinarian services</option>
+                        <option>Plants</option>
+                        <option>People</option>
+                        <option>Misc</option>
+                    </select>
                 </label><br/>
                 <label> 
                 Review*
