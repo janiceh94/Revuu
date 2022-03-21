@@ -19,6 +19,8 @@ const login = (email, password) => {
                 // console.log(res)
                 if(res.data.token){
                     localStorage.setItem('user', JSON.stringify(res.data.token))
+                    //res.data.foundUser._id
+                    // localStorage.setItem("samtest", JSON.stringify("hello"));
                 }
                 return res.data.token;
             })
