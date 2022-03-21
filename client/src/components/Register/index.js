@@ -9,9 +9,11 @@ const Register = () => {
 	const handleSubmit = async (e) => {
 		e.preventDefault();
 		await authService.register(email, password);
+		// console.log ("email:", email, "password:", password);
 		setEmail("");
 		setPassword("");
 		setSuccessMsg("SUCCESS YAY!");
+
 	};
 
 	return (
