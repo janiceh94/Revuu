@@ -16,6 +16,10 @@ export default function Home() {
 		});
 	};
 
+	const reviewId = async (id) => {
+		navigate(`/review/${id}`);
+	}
+
 	useEffect(() => {
 		fetchReviews();
 	}, []);
@@ -26,7 +30,7 @@ export default function Home() {
 			{reviews.map((review, i) => {
 				return <h3 key={i}>{review.reviewItem}
 				<div>
-				<button onClick = {() => (console.log(review._id))}>View Review</button>
+				<button onClick = {() => reviewId(review._id)}>View Review</button>
 				</div>
 				</h3>;
 			})}
