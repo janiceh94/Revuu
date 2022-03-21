@@ -19,9 +19,10 @@ export default function Login({checkUserActive}) {
     }
 
     return (
-        <div>
+        <div id="login">
             <form>
-                <label htmlFor="email">Email
+                <h3>Log in</h3>
+                <label htmlFor="email">Email</label>
                 <input	
 						onChange={(e) => setEmail(e.target.value)}
 						value={email}
@@ -29,8 +30,7 @@ export default function Login({checkUserActive}) {
 						name="email"
 						placeholder="email"
                         />
-                </label>
-                <label htmlFor="password">Password
+                <label htmlFor="password">Password</label>
                  <input	
 						onChange={(e) => setPassword(e.target.value)}
 						value={password}
@@ -38,7 +38,6 @@ export default function Login({checkUserActive}) {
 						name="password"
 						placeholder="password"
                         />
-                </label>
                 <div>
                 <button onClick={handleSubmit}>
 						Login

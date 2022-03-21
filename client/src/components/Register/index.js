@@ -15,10 +15,10 @@ const Register = () => {
 	};
 
 	return (
-		<div>
+		<div id="register">
 			<form >
-				<label htmlFor="email">
-                    Email
+				<h3>Sign up</h3>
+				<label htmlFor="email">Email</label>
 					<input
 						
 						onChange={(e) => setEmail(e.target.value)}
@@ -27,9 +27,7 @@ const Register = () => {
 						name="email"
 						placeholder="email"
 					/>
-				</label>
-				<label htmlFor="password">
-                    Password
+				<label htmlFor="password">Password</label>
 					<input
 					
 						onChange={(e) => setPassword(e.target.value)}
@@ -38,11 +36,10 @@ const Register = () => {
 						name="password"
 						placeholder="new password"
 					/>
-				</label>
 				<button onClick={handleSubmit}>
 					Register
 				</button>
-				<h1 style={{ color: "green" }}>{successMsg}</h1>
+				{/* <h1 style={{ color: "green" }}>{successMsg}</h1> */}
 			</form>
 		</div>
 	);

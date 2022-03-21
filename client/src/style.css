@@ -25,10 +25,11 @@ body{
 }
 
 .App{
-    border-bottom: 1px red solid;
+    /* border-bottom: 1px red solid; */
     margin: auto;
     /* FIXME SUBJECT TO CHANGE FOR ADAPTIVE VIEW */
     width: 350px;
+    min-height: 100vh;
 }
 
 #logo{
@@ -81,6 +82,10 @@ a:active{
 img{
     width: 75%;
 }
+
+input{
+    font-family: 'Overpass Mono', monospace;
+}
 /* !SECTION */
 /*
 SECTION PAGES: HEADER
@@ -109,7 +114,11 @@ SECTION PAGES: FOOTER STICKY
 /*
 SECTION PAGES: FOOTER CR
 */
+#FootCR{
+}
+
 #FootCR > p {
+    margin-bottom: auto;
     padding: 0.5rem;
     font-size: 10pt;
     color: var(--tertiary-gray);
@@ -118,6 +127,30 @@ SECTION PAGES: FOOTER CR
 /*
 SECTION PAGES: LANDING
 */
+
+.landing{
+    height:100vh;
+    display: flex;
+    flex-direction: column;
+}
+#login > *{
+    /* border: aqua 1px solid; */
+    background-color: var(--secondary-gray);
+    margin: 1rem;
+    padding: 1rem;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+#register > *{
+    /* border: aqua 1px solid; */
+    background-color: var(--secondary-gray);
+    margin: 1rem;
+    padding: 1rem;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
 
 /* !SECTION */
 /*
