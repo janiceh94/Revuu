@@ -7,7 +7,8 @@ import FakePage from '../FakePage';
 export default function MakeReview({checkUserActive}) {
     const navigate = useNavigate();
     const [ data, setData ] = useState({
-        link: "https://picsum.photos/500?grayscale",
+        webLink: "",
+        imageLink: "https://picsum.photos/500?grayscale",
         reviewItem: "",
         title: "",
         category: "",
@@ -30,7 +31,8 @@ export default function MakeReview({checkUserActive}) {
                 .then((err, createdReview)=> {
                     //console.log(createdReview);
                     // {checkUserActive()}
-                    setData({link: ""});
+                    setData({webLink: ""});
+                    setData({imageLink: ""});
                     setData({reviewItem: ""});
                     setData({title: ""});
                     setData({category: ""});
@@ -43,7 +45,7 @@ export default function MakeReview({checkUserActive}) {
 
     return(
         <div> 
-            <img id="image" src={data.link} alt="item_image"/>
+            <img id="image" src={data.imageLink} alt="item_image"/>
             <form>
             <label>
                 <br/>
@@ -64,7 +66,15 @@ export default function MakeReview({checkUserActive}) {
                     <label> Web Link</label>
                     <br/>
                     <input 
-                    onChange={(e) => setData({link: e.target.value})}
+                    onChange={(e) => {
+                        if(document.querySelector('#image').style.display === 'none'){
+                            setData({webLink: e.target.value});
+                            setData({imageLink: "https://picsum.photos/500?grayscale"});
+                        } else {
+                            setData({webLink: ""});
+                            setData({imageLink: e.target.value});
+                        };
+                    }}
                     type="text" 
                     name="link"
                     value={data.link}
