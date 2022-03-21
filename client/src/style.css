@@ -107,6 +107,7 @@ SECTION PAGES: FOOTER STICKY
     position: fixed;
     margin-top: auto;
     bottom:0;
+    width: inherit;
     background-color: var(--primary-color);
     display: flex;
     justify-content: space-around;
