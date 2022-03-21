@@ -163,6 +163,24 @@ SECTION PAGES: HOME
 SECTION PAGES: USER PROFILE
 */
 
+img.profile {
+    border-radius: 50%;
+    height:200px;
+    width:200px;
+}
+
+.container {
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    padding: 5px;
+    width: 150px;
+    box-shadow: 5px 5px 10px var(--primary-color-Darker);
+}
+
+.container:hover {
+    box-shadow: 0 0 2px 1px var( --primary-color-lighter);
+}
+
 /* !SECTION */
 /*
 SECTION PAGES: Create Review
