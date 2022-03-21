@@ -14,7 +14,7 @@ export default function MakeReview() {
         category: "",
         body: "",
         rating: undefined,
-        user: "123456"
+        user: "6237ecb0df4acbfe23cc5ae7" //test@test.com
     });
 
     const handleSubmit = async(e) => {
@@ -41,6 +41,7 @@ export default function MakeReview() {
                             user: ""
                         }
                     })
+                    navigate(`/review/${createdReview._id}`)
                 })
         };
     };
