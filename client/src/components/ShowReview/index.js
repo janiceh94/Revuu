@@ -2,17 +2,28 @@ import React from 'react';
 import {useNavigate} from 'react-router-dom';
 import { useEffect, useState } from "react";
 import * as reviewService from "../../api/review.service";
+import apiClient from '../../api/axios.config';
 
 export default function MakeReview() {
-    const [ review, setReview ] = useState({});
-    const reviewId = window.location.pathname.split("/")[2];
+    const [review, setReview] = useState({});
+    //const [reviewId, setReviewId] = useState("")
+    // const review = {};
+    // const reviewId = window.location.pathname.split("/")[2];
 
-    const getReviewData = async () => {
-        await reviewService.get(reviewId)
-                .then((err, foundReview) => {
-                    setReview(foundReview);
-                })
-    };
+    // setReviewId(window.location.pathname.split("/")[2])
+
+    // const getReviewIdFunc = async () => {
+    //     await setReviewId(window.location.pathname.split("/")[2]);
+    //     console.log("reviewIDFunc:", reviewId);
+    // }
+	const getReview = async () => {
+		await apiClient.get(`/api/review/${window.location.pathname.split("/")[2]}`).then((res)=>{
+            console.log("reviewID:", window.location.pathname.split("/")[2]);
+            console.log("res.data.data: ",res.data.data);
+			setReview(res.data.data);
+            
+		})
+	}
 
     const checkImage = () => {
         if(review.link !== "https://picsum.photos/500?grayscale"){
@@ -31,7 +42,8 @@ export default function MakeReview() {
     }
 
     useEffect(() => {
-		getReviewData();
+       // getReviewIdFunc();
+		getReview();
 	}, []);
 
     return(
