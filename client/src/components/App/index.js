@@ -1,4 +1,7 @@
 import {BrowserRouter, Route, Routes} from 'react-router-dom';
+import Header from "../Header"
+import FootStick from "../FooterSticky";
+import FootCR from "../FooterCR";
 import FakePage from "../FakePage";
 import Home from '../../page/Home';
 import UserProfile from '../../page/UserProfile'; 
@@ -6,7 +9,7 @@ import Landing from '../../page/Landing';
 import CreateReview from '../../page/CreateReview'; 
 import ShowReview from '../../page/ShowReview'; 
 import EditReview from '../../page/EditReview';
-import { useReducer, useEffect } from "react";
+import { useReducer, useEffect} from "react";
 import * as authService from "../../api/auth.service";
 import * as reviewService from "../../api/review.service";
 
@@ -47,11 +50,13 @@ function App() {
   useEffect(() => {
       fetchReviews();
       checkLogin();
+      //window.location.reload(false);
   }, []);
 
   if (isLoggedIn) {
       return (
         <div className="App">
+          <Header isLoggedIn={isLoggedIn}/>
         <Routes>
         <Route path="/" element={<Landing checkUserActive={() => dispatch({type: "setIsLoggedIn", payload: true})}/>}/>          
         <Route path='home' element = {<Home />}/>
@@ -62,11 +67,14 @@ function App() {
           <Route path="review/:id" element={<ShowReview />} />
           <Route path="review/:id/edit" element={<EditReview />} />
         </Routes>
+        <FootStick isLoggedIn={isLoggedIn}/>
+        <FootCR/>
     </div>
       );
   } else {
       return(
         <div className="App">
+          <Header/>
         <Routes>
           <Route path="/" element={<Landing checkUserActive={() => dispatch({type: "setIsLoggedIn", payload: true})}/>}/>
           {/* comment out  */}
@@ -77,6 +85,8 @@ function App() {
           <Route path="review/:id" element={<ShowReview />} />
           <Route path="review/:id/edit" element={<EditReview />} />
         </Routes>
+        <FootStick/>
+        <FootCR/>
     </div>
       )
   }

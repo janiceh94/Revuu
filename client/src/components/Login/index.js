@@ -13,8 +13,8 @@ export default function Login({checkUserActive}) {
             {checkUserActive()}
             setEmail("");
             setPassword("");
-            console.log('handle submit')
-            navigate('/home') 
+            console.log('handle submit');
+            navigate('/home');
         })
     }
 

@@ -8,7 +8,6 @@ function FakePage() {
   return (
     <div className="FakePage">
       <h1>Test</h1>
-      <Header/>
       <ReviewsList/>
       <span id="logo">Revuu</span>
       <h1>Fake page for testing whatever you want. Make sure to delete me.</h1>
@@ -19,9 +18,7 @@ function FakePage() {
       <div className="gg-check-o icon"></div>Icon test
       <div className="gg-phone icon"></div>
       <img src="https://i.kym-cdn.com/photos/images/original/001/072/714/40b.gif"/>
-      <FooterSticky/>
       <Home/>
-      <FooterCR/>
     </div>
   );
 }
