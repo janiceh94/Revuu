@@ -77,7 +77,7 @@ export default function MakeReview({checkUserActive}) {
                     }}
                     type="text" 
                     name="link"
-                    value={data.link}
+                    value={data.imageLink}
                     placeholder="Link"
                     /> 
                 </label><br/>

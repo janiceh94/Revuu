@@ -25,10 +25,11 @@ body{
 }
 
 .App{
-    border-bottom: 1px red solid;
+    border: 1px red solid;
     margin: auto;
     /* FIXME SUBJECT TO CHANGE FOR ADAPTIVE VIEW */
     width: 350px;
+    min-height: 100vh;
 }
 
 #logo{
@@ -99,7 +100,8 @@ SECTION PAGES: HEADER
 SECTION PAGES: FOOTER STICKY
 */
 #FootStick{
-    position: sticky;
+    position: fixed;
+    margin-top: auto;
     bottom:0;
     background-color: var(--primary-color);
     display: flex;
