@@ -20,7 +20,8 @@ const login = (email, password) => {
                 if(res.data.token){
                     localStorage.setItem('user', JSON.stringify(res.data.token))
                     //res.data.foundUser._id
-                    // localStorage.setItem("samtest", JSON.stringify("hello"));
+                    //console.log(res.data);
+                    localStorage.setItem("userID", JSON.stringify(res.data.foundUser._id));
                 }
                 return res.data.token;
             })
