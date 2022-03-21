@@ -6,6 +6,7 @@ import * as reviewService from "../../api/review.service";
 export default function MakeReview({checkUserActive}) {
     const navigate = useNavigate();
     const [ data, setData ] = useState({
+        link: "https://picsum.photos/500?grayscale",
         reviewItem: "",
         title: "",
         category: "",
@@ -14,9 +15,9 @@ export default function MakeReview({checkUserActive}) {
         user: ""
     })
 
+
     const handleSubmit = async(e) => {
         e.preventDefault();
-        console.log("here");
         if(Object.values(data).includes("") || Object.values(data).includes(undefined)){
             alert("Please fill out all fields");
         }else if (data.rating > 5 || data.rating < 0){
@@ -24,8 +25,9 @@ export default function MakeReview({checkUserActive}) {
         } else {
             await reviewService.create(data)
                 .then((err, createdReview)=> {
-                    console.log(createdReview);
+                    //console.log(createdReview);
                     // {checkUserActive()}
+                    setData({link: ""});
                     setData({reviewItem: ""});
                     setData({title: ""});
                     setData({category: ""});
@@ -39,16 +41,32 @@ export default function MakeReview({checkUserActive}) {
 
     return(
         <div> 
+            <img id="image" src={data.link} alt="item_image"/>
             <form>
-                <label>
-                Noun*
+            <label>
                 <br/>
+                    <label>Image URL </label>
+                    <label class="switch">
                     <input 
-                    onChange={(e) => setData({reviewItem: e.target.value})}
+                         onChange={(e) => {
+                            if(e.target.checked){
+                                document.querySelector('#image').style.display = 'none';
+                            } else {
+                                document.querySelector('#image').style.display = 'block';
+                            };
+                         }} 
+                        id="slider" 
+                        type="checkbox"/>
+                    <span class="slider round"></span>
+                    </label>
+                    <label> Web Link</label>
+                    <br/>
+                    <input 
+                    onChange={(e) => setData({link: e.target.value})}
                     type="text" 
-                    name="reviewItem"
-                    value={data.reviewItem}
-                    placeholder="Noun*"
+                    name="link"
+                    value={data.link}
+                    placeholder="Link"
                     /> 
                 </label><br/>
                 <label> 
@@ -61,6 +79,17 @@ export default function MakeReview({checkUserActive}) {
                     value={data.title}
                     placeholder="Title*"
                     />
+                </label><br/>
+                <label>
+                Noun*
+                <br/>
+                    <input 
+                    onChange={(e) => setData({reviewItem: e.target.value})}
+                    type="text" 
+                    name="reviewItem"
+                    value={data.reviewItem}
+                    placeholder="Noun*"
+                    /> 
                 </label><br/>
                 <label> 
                 Category*

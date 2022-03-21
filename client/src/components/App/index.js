@@ -72,7 +72,6 @@ function App() {
           {/* comment out  */}
           <Route path='home' element = {<Home />}/>
           <Route path='profile' element = {<UserProfile />}/>
-          {/* Delete FakePage later */}
           <Route path='fake-page' element = {<FakePage />}/> 
           <Route path="review" element={<CreateReview  />}/>
           <Route path="review/:id" element={<ShowReview />} />
