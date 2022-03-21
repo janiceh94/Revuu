@@ -4,17 +4,7 @@ import { useEffect, useState } from "react";
 import * as reviewService from "../../api/review.service";
 
 export default function MakeReview({checkUserActive}) {
-    const navigate = useNavigate();
-    const [ review, setReview ] = useState({
-        imageLink: "https://picsum.photos/200?grayscale",
-        webLink: "",
-        reviewItem: "Shoes",
-        title: "I hate these Shoes",
-        category: "Clothing",
-        body: "OMG THESE SHEEEWWWWWSSSSS",
-        rating: undefined,
-
-    });
+    const [ review, setReview ] = useState({});
 
     const getReviewData = async (req) => {
         await reviewService.get(req.params.id)
@@ -50,10 +40,10 @@ export default function MakeReview({checkUserActive}) {
                 {checkImage()}
             </div>
             <h2>{review.title}</h2>
-            <h3>{reviewItem()}</h3>
-            
-
-
+            <h3>Review Item:<br/>{reviewItem()}</h3>
+            <h4>Category:<br/>{review.category}</h4>
+            <p>Description:<br/>{review.body}</p>
+            <h4>Rating:<br/>{review.rating}</h4>
         </div>
     )
 }
