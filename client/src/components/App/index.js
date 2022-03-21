@@ -9,7 +9,7 @@ import Landing from '../../page/Landing';
 import CreateReview from '../../page/CreateReview'; 
 import ShowReview from '../../page/ShowReview'; 
 import EditReview from '../../page/EditReview';
-import { useReducer, useEffect } from "react";
+import { useReducer, useEffect} from "react";
 import * as authService from "../../api/auth.service";
 import * as reviewService from "../../api/review.service";
 
@@ -50,6 +50,7 @@ function App() {
   useEffect(() => {
       fetchReviews();
       checkLogin();
+      //window.location.reload(false);
   }, []);
 
   if (isLoggedIn) {

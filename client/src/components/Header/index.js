@@ -1,15 +1,16 @@
 import { useNavigate } from 'react-router-dom';
 import * as authService from "../../api/auth.service";
+import { useState } from "react";
 
 function Header({isLoggedIn}) {
-
     const navigate=useNavigate();
 
     function signOut(e) {
         e.preventDefault();
         authService.logout();
-        console.log('logout');
+        // console.log('logout');
         navigate("/");
+        window.location.reload(false);
     }
 
     if(isLoggedIn){
