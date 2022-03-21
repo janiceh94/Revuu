@@ -55,7 +55,7 @@ function App() {
   if (isLoggedIn) {
       return (
         <div className="App">
-          <Header/>
+          <Header isLoggedIn={isLoggedIn}/>
         <Routes>
         <Route path="/" element={<Landing checkUserActive={() => dispatch({type: "setIsLoggedIn", payload: true})}/>}/>          
         <Route path='home' element = {<Home />}/>
@@ -66,7 +66,7 @@ function App() {
           <Route path="review/:id" element={<ShowReview />} />
           <Route path="review/:id/edit" element={<EditReview />} />
         </Routes>
-        <FootStick/>
+        <FootStick isLoggedIn={isLoggedIn}/>
         <FootCR/>
     </div>
       );
