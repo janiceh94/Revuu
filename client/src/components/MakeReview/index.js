@@ -4,7 +4,7 @@ import { useEffect, useState } from "react";
 import * as reviewService from "../../api/review.service";
 import FakePage from '../FakePage';
 
-export default function MakeReview({checkUserActive}) {
+export default function MakeReview() {
     const navigate = useNavigate();
 
     let [data, setData] = useState({
@@ -14,45 +14,37 @@ export default function MakeReview({checkUserActive}) {
         category: "",
         body: "",
         rating: undefined,
-        user: ""
+        user: "123456"
     });
 
-    const handleSubmit = async(e, req) => {
+    const handleSubmit = async(e) => {
         e.preventDefault();
-        console.log(req.body)
-        // if(Object.values(data).includes("") || Object.values(data).includes(undefined)){
-        //     alert("Please fill out all fields");
-        // }else if (data.rating > 5 || data.rating < 0){
-        //     alert("Please rate the noun from 0-5.");
-        // } else if (data.category === "Please Select") {
-        //     alert("Please select a category.");
-        // } else {
-        //     console.log(data.rating)
-        //     console.log(data)
-        //     await reviewService.create(data)
-        //         .then((err, createdReview)=> {
-        //             //console.log(createdReview);
-        //             // {checkUserActive()}
-        //             setData({webLink: ""});
-        //             setData({imageLink: ""});
-        //             setData({reviewItem: ""});
-        //             setData({title: ""});
-        //             setData({category: ""});
-        //             setData({body: ""});
-        //             setData({rating: undefined});
-        //             setData({user: ""});
-        //         })
-        // };
+        if(Object.values(data).includes("") || Object.values(data).includes(undefined)){
+            alert("Please fill out all fields");
+        }else if (data.rating > 5 || data.rating < 0){
+            alert("Please rate the noun from 0-5.");
+        } else if (data.category === "Please Select") {
+            alert("Please select a category.");
+        } else {
+            await reviewService.create(data)
+                .then((err, createdReview)=> {
+                    //console.log(createdReview);
+                    setData(prevData => {
+                        return {
+                            ...prevData, 
+                            link: "https://picsum.photos/500?grayscale",
+                            reviewItem: "",
+                            title: "",
+                            category: "",
+                            body: "",
+                            rating: undefined,
+                            user: ""
+                        }
+                    })
+                })
+        };
     };
 
-    // useEffect(() => {
-	// 	setData(prevData => {
-    //        return {
-    //         ...prevData,
-    //         imageLink: "https://picsum.photos/500?grayscale"
-    //        }
-    //     });
-	// }, []);
     const changeLink = () => {
         setData(prevData => {
             if(!prevData.link.includes("jpg") && !prevData.link.includes("png")){
@@ -140,7 +132,7 @@ export default function MakeReview({checkUserActive}) {
                     placeholder="Add item here"
                     />
                 </label><br/>
-                <label for="selector"> 
+                <label htmlFor="selector"> 
                 Category*
                 <br/>
                     <select id="selector"
