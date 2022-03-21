@@ -62,16 +62,32 @@ export default function MakeReview({checkUserActive}) {
                     placeholder="Title*"
                     />
                 </label><br/>
-                <label> 
+                <label for="selector"> 
                 Category*
                 <br/>
-                    <input 
+                    <select id="selector"
                     onChange={(e) => setData({category: e.target.value})}
-                    type="text" 
                     name="category"
-                    value={data.category}
-                    placeholder="Category*"
-                    /> 
+                    > 
+                        <option>Please Select</option> 
+                        <option>Restaurants</option>
+                        <option>Tech Products</option>
+                        <option>Cooking Gagets</option>
+                        <option>Books</option>
+                        <option>Destinations/Landmarks</option>
+                        <option>Clothes/Accessories</option>
+                        <option>Makeup</option>
+                        <option>Movies/TV Shows</option>
+                        <option>Delivery Services</option>
+                        <option>Repair Services</option>
+                        <option>Videos/Streams</option>
+                        <option>Music</option>
+                        <option>Videogames</option>
+                        <option>Medical/Veterinarian services</option>
+                        <option>Plants</option>
+                        <option>People</option>
+                        <option>Misc</option>
+                    </select>
                 </label><br/>
                 <label> 
                 Review*
