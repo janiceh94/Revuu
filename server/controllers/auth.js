@@ -1,9 +1,9 @@
 const bcrypt = require ('bcryptjs');
 const jwt = require('jsonwebtoken');
 const db = require('../models');
+const { update } = require('./user');
 
 const register = async (req, res) => {
-    // console.log(req.body.email, req.body.password);
     try{
         const foundUser = await db.User.findOne({email: req.body.email})
         if(!foundUser){
@@ -12,12 +12,12 @@ const register = async (req, res) => {
             const updatedUser = await db.User.create(
                 {
                     email: req.body.email,
-                    password: hash
+                    password: hash,
                 },
             )
             return res
                 .status(201)
-                .json({status: 201, message: 'We did it!'})
+                .json({status: 201, message: 'We did it!', updatedUser})
         }
         return res 
             .status(400)
@@ -36,7 +36,6 @@ const login = async (req, res) => {
         const foundUser = await db.User.findOne(
             {email: req.body.email}
         ).select('+password')
-        // console.log(foundUser, 'Found user with the password')
         if(!foundUser){
             return res
                 .status(400).json({
@@ -55,7 +54,8 @@ const login = async (req, res) => {
             return res.status(200).json({
                 status: 200,
                 message: 'Logged In',
-                token
+                token,
+                foundUser
             })
         } else {
             return res

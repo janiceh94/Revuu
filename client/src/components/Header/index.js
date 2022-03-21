@@ -1,30 +1,32 @@
-import React from "react"
+import { useNavigate } from 'react-router-dom';
+import * as authService from "../../api/auth.service";
+import { useState } from "react";
 
-function Header() {
-    return (    
-        <div>
-            <img src=""/>
-            <form>
-                <label>
-                    <input type="text" placeholder="search"/>
-                </label>
-                <input type="submit" value="submit"/>
-                {/* <a type="submit" href=""></a> */}
-            </form>
-            <ul>
-                <li>
-                    <a href="">Login</a> 
-                </li>
-                <li>
-                    <a href="">Register</a>
-                </li>
-                <li>
-                    <a href="">Logout</a>
-                </li>
-            </ul>
-            <h2>Header</h2>
-        </div>
-    )
+function Header({isLoggedIn}) {
+    const navigate=useNavigate();
+
+    function signOut(e) {
+        e.preventDefault();
+        authService.logout();
+        // console.log('logout');
+        navigate("/");
+        window.location.reload(false);
+    }
+
+    if(isLoggedIn){
+        return (    
+            <div id="pageHeader">
+                <span id="logo">Revuu</span>
+                <button type="button" onClick={signOut}>Sign out</button>
+            </div>
+        );
+    }else{
+        return (    
+            <div id="pageHeader">
+                <span id="logo">Revuu</span>
+            </div>
+        );
+    }
 }
 
 export default Header;

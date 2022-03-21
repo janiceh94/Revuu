@@ -1,12 +1,10 @@
-
+import ShowReview from "../../components/ShowReview";
 
 
 export default function showReview(){
     return(
         <div> 
-            <h1>
-                Show Review
-            </h1>
+            <ShowReview />
         </div>
     )
 }

@@ -1,6 +1,6 @@
 import apiClient from './axios.config';
 
-const reviews = 'api/review';
+const reviews = '/api/review';
 
 const getAllReviews = () => {
     return apiClient.get(`${reviews}`);

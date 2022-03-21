@@ -1,3 +1,5 @@
+//FIXME DEPRECIATED
+
 import React from "react"
 
 function Login() {
