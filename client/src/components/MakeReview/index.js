@@ -6,6 +6,7 @@ import * as reviewService from "../../api/review.service";
 
 export default function MakeReview() {
     const navigate = useNavigate();
+    let userID = JSON.parse(`${localStorage.getItem("userID")}`);
 
     let [data, setData] = useState({
         link: "https://picsum.photos/500?grayscale",
@@ -14,7 +15,7 @@ export default function MakeReview() {
         category: "",
         body: "",
         rating: undefined,
-        user: "6237ecb0df4acbfe23cc5ae7" //test@test.com
+        user: `${userID}` 
     });
 
     const handleSubmit = async(e) => {
@@ -197,7 +198,6 @@ export default function MakeReview() {
                     placeholder="Please rate between 0-5"
                     />
                 </label><br/>
-                <input type="hidden" value=""/> 
             </form>
             <button onClick={handleSubmit}>Publish</button>
         </div>

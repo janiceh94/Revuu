@@ -5,7 +5,15 @@ import * as reviewService from "../../api/review.service";
 import apiClient from '../../api/axios.config';
 
 export default function MakeReview() {
-    const [review, setReview] = useState({});
+    const [review, setReview] = useState({
+        link: "https://picsum.photos/500?grayscale",
+        reviewItem: "Review Item-",
+        title: "Title-",
+        category: "Category-",
+        body: "body-",
+        rating: 3,
+        user: "6237ecb0df4acbfe23cc5ae7" //test@test.com
+    });
 
 	const getReview = async () => {
 		await apiClient.get(`/api/review/${window.location.pathname.split("/")[2]}`).then((res)=>{
