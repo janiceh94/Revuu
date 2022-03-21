@@ -1,8 +1,8 @@
 import React from 'react';
 import {useNavigate} from 'react-router-dom';
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import * as reviewService from "../../api/review.service";
-import FakePage from '../FakePage';
+
 
 export default function MakeReview() {
     const navigate = useNavigate();
@@ -41,7 +41,7 @@ export default function MakeReview() {
                             user: ""
                         }
                     })
-                    navigate(`/review/${createdReview.data.data._id}`)
+                    navigate(`/home`)
                 })
         };
     };

@@ -5,9 +5,10 @@ import * as reviewService from "../../api/review.service";
 
 export default function MakeReview() {
     const [ review, setReview ] = useState({});
+    const reviewId = window.location.pathname.split("/")[2];
 
-    const getReviewData = async (req) => {
-        await reviewService.get(req.params.id)
+    const getReviewData = async () => {
+        await reviewService.get(reviewId)
                 .then((err, foundReview) => {
                     setReview(foundReview);
                 })
