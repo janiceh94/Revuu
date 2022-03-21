@@ -2,46 +2,67 @@ import React from 'react';
 import {useNavigate} from 'react-router-dom';
 import { useEffect, useState } from "react";
 import * as reviewService from "../../api/review.service";
+import apiClient from '../../api/axios.config';
 
 export default function MakeReview() {
-    const [ review, setReview ] = useState({});
-    const reviewId = window.location.pathname.split("/")[2];
+    const [review, setReview] = useState({});
+    //const [reviewId, setReviewId] = useState("")
+    // const review = {};
+    // const reviewId = window.location.pathname.split("/")[2];
 
-    const getReviewData = async () => {
-        await reviewService.get(reviewId)
-                .then((err, foundReview) => {
-                    setReview(foundReview);
-                })
-    };
+    // setReviewId(window.location.pathname.split("/")[2])
 
-    const checkImage = () => {
-        if(review.link !== "https://picsum.photos/500?grayscale"){
-            return <a href={review.link} target="_blank" rel="noreferrer">{review.reviewItem}</a>
-        } else {
-            return <img src={review.link} alt="review-item"/>
-        }
-    }
+    // const getReviewIdFunc = async () => {
+    //     await setReviewId(window.location.pathname.split("/")[2]);
+    //     console.log("reviewIDFunc:", reviewId);
+    // }
+	const getReview = async () => {
+		await apiClient.get(`/api/review/${window.location.pathname.split("/")[2]}`).then((res)=>{
+            console.log("reviewID:", window.location.pathname.split("/")[2]);
+            console.log("res.data.data: ",res.data.data);
+			setReview(res.data.data);
+            
+		})
+        // console.log("review: ",review);
+	}
 
-    const reviewItem = () => {
-        if(review.link !== "https://picsum.photos/500?grayscale"){
-            return 
-        } else {
-            return <h3>Review Item:<br/><>{review.reviewItem}</></h3>
-        }
-    }
+    // const getReviewData = async () => {
+    //     await reviewService.get(reviewId)
+    //             .then((err, foundReview) => {
+    //                 setReview(foundReview);
+    //                 console.log("foundReview",foundReview);
+    //             })
+    // };
+
+    // const checkImage = () => {
+    //     if(review.link !== "https://picsum.photos/500?grayscale"){
+    //         return <a href={review.link} target="_blank" rel="noreferrer">{review.reviewItem}</a>
+    //     } else {
+    //         return <img src={review.link} alt="review-item"/>
+    //     }
+    // }
+
+    // const reviewItem = () => {
+    //     if(review.link !== "https://picsum.photos/500?grayscale"){
+    //         return 
+    //     } else {
+    //         return <h3>Review Item:<br/><>{review.reviewItem}</></h3>
+    //     }
+    // }
 
     useEffect(() => {
-		getReviewData();
+       // getReviewIdFunc();
+		getReview();
 	}, []);
 
     return(
         <div> 
             <h1>Show Review</h1>
-            <div id="image">
+            {/* <div id="image">
                 {checkImage()}
-            </div>
+            </div> */}
             <h2>{review.title}</h2>
-            {reviewItem()}
+            {/* {reviewItem()} */}
             <h4>Category:<br/>{review.category}</h4>
             <p>Description:<br/>{review.body}</p>
             <h4>Rating:<br/>{review.rating}</h4>

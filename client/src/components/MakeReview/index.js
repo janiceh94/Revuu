@@ -41,7 +41,7 @@ export default function MakeReview() {
                             user: ""
                         }
                     })
-                    navigate(`/home`)
+                    navigate(`/review/${createdReview.data.data._id}`)
                 })
         };
     };
