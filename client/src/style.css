@@ -104,7 +104,8 @@ SECTION PAGES: HEADER
 SECTION PAGES: FOOTER STICKY
 */
 #FootStick{
-    position: sticky;
+    position: fixed;
+    margin-top: auto;
     bottom:0;
     background-color: var(--primary-color);
     display: flex;
@@ -234,6 +235,6 @@ input:checked + .slider:before {
     display: block;
 }
 
-#web-link {
-    display: block;
+#reviewItem-link {
+    display: none;
 }

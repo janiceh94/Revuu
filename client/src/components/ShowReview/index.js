@@ -3,35 +3,36 @@ import {useNavigate} from 'react-router-dom';
 import { useEffect, useState } from "react";
 import * as reviewService from "../../api/review.service";
 
-export default function MakeReview({checkUserActive}) {
+export default function MakeReview() {
     const [ review, setReview ] = useState({});
+    const reviewId = window.location.pathname.split("/")[2];
 
-    const getReviewData = async (req) => {
-        await reviewService.get(req.params.id)
+    const getReviewData = async () => {
+        await reviewService.get(reviewId)
                 .then((err, foundReview) => {
                     setReview(foundReview);
                 })
     };
 
-    useEffect(() => {
-		getReviewData();
-	}, []);
-
     const checkImage = () => {
-        if(review.webLink === ""){
-            return <img src={review.imageLink} />
+        if(review.link !== "https://picsum.photos/500?grayscale"){
+            return <a href={review.link} target="_blank" rel="noreferrer">{review.reviewItem}</a>
         } else {
-            return <a href={review.webLink} target="_blank" rel="noreferrer">{review.reviewItem}</a>
+            return <img src={review.link} alt="review-item"/>
         }
     }
 
     const reviewItem = () => {
-        if(review.webLink === ""){
-            return <>{review.reviewItem}</>
-        } else {
+        if(review.link !== "https://picsum.photos/500?grayscale"){
             return 
-        } 
+        } else {
+            return <h3>Review Item:<br/><>{review.reviewItem}</></h3>
+        }
     }
+
+    useEffect(() => {
+		getReviewData();
+	}, []);
 
     return(
         <div> 
@@ -40,7 +41,7 @@ export default function MakeReview({checkUserActive}) {
                 {checkImage()}
             </div>
             <h2>{review.title}</h2>
-            <h3>Review Item:<br/>{reviewItem()}</h3>
+            {reviewItem()}
             <h4>Category:<br/>{review.category}</h4>
             <p>Description:<br/>{review.body}</p>
             <h4>Rating:<br/>{review.rating}</h4>

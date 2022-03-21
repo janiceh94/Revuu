@@ -2,21 +2,20 @@ import React from 'react';
 import {useNavigate} from 'react-router-dom';
 import { useState } from "react";
 import * as reviewService from "../../api/review.service";
-import FakePage from '../FakePage';
 
-export default function MakeReview({checkUserActive}) {
+
+export default function MakeReview() {
     const navigate = useNavigate();
-    const [ data, setData ] = useState({
-        webLink: "",
-        imageLink: "https://picsum.photos/500?grayscale",
+
+    let [data, setData] = useState({
+        link: "https://picsum.photos/500?grayscale",
         reviewItem: "",
         title: "",
         category: "",
         body: "",
         rating: undefined,
-        user: ""
-    })
-
+        user: "6237ecb0df4acbfe23cc5ae7" //test@test.com
+    });
 
     const handleSubmit = async(e) => {
         e.preventDefault();
@@ -28,75 +27,122 @@ export default function MakeReview({checkUserActive}) {
             alert("Please select a category.");
         } else {
             await reviewService.create(data)
-                .then((err, createdReview)=> {
-                    //console.log(createdReview);
-                    // {checkUserActive()}
-                    setData({webLink: ""});
-                    setData({imageLink: ""});
-                    setData({reviewItem: ""});
-                    setData({title: ""});
-                    setData({category: ""});
-                    setData({body: ""});
-                    setData({rating: undefined});
-                    setData({user: ""});
+                .then((createdReview) => {
+                    console.log(createdReview);
+                    setData(prevData => {
+                        return {
+                            ...prevData, 
+                            link: "https://picsum.photos/500?grayscale",
+                            reviewItem: "",
+                            title: "",
+                            category: "",
+                            body: "",
+                            rating: undefined,
+                            user: ""
+                        }
+                    })
+                    navigate(`/home`)
                 })
         };
     };
 
+    const changeLink = () => {
+        setData(prevData => {
+            if(!prevData.link.includes("jpg") && !prevData.link.includes("png")){
+                return {
+                    ...prevData, 
+                    link: "https://picsum.photos/500?grayscale"
+                }
+            } else {
+                return {
+                    ...prevData, 
+                    link: prevData.link
+                }
+            }
+        })}
+
     return(
         <div> 
-            <img id="image" src={data.imageLink} alt="item_image"/>
+            <img id="image" src={data.link} alt="item_image"/>
+            <a id="reviewItem-link" href={data.link} target="_blank" rel="noreferrer">{data.reviewItem}</a>
             <form>
             <label>
                 <br/>
                     <label>Image URL </label>
-                    <label class="switch">
+                    <label className="switch">
                     <input 
                         onChange={(e) => {
                             if(e.target.checked){
                                 document.querySelector('#image').style.display = 'none';
+                                document.querySelector('#reviewItem-link').style.display = 'block';
                             } else {
+                                document.querySelector('#reviewItem-link').style.display = 'none';
                                 document.querySelector('#image').style.display = 'block';
+                                changeLink();
                             };
                         }} 
                         id="slider" 
                         type="checkbox"/>
-                    <span class="slider round"></span>
+                    <span className="slider round"></span>
                     </label>
                     <label> Web Link</label>
                     <br/>
                     <input 
                     onChange={(e) => {
-                        if(document.querySelector('#image').style.display === 'none'){
-                            setData({webLink: e.target.value});
-                            setData({imageLink: "https://picsum.photos/500?grayscale"});
-                        } else {
-                            setData({webLink: ""});
-                            setData({imageLink: e.target.value});
-                        };
-                    }}
+                            setData(prevData => {
+                                return {
+                                    ...prevData, 
+                                    link: e.target.value
+                                }
+                            })}}
+                    value={data.link}
                     type="text" 
                     name="link"
-                    value={data.link}
-                    placeholder="Link"
+                    id="link"
                     /> 
                 </label><br/>
                 <label> 
                 Title*
                 <br/>
                     <input 
-                    onChange={(e) => setData({title: e.target.value})}
+                    onChange={(e) => setData(prevData => {
+                        return {
+                            ...prevData, 
+                            title: e.target.value
+                        }
+                    })}
                     type="text" 
                     name="title"
                     value={data.title}
-                    placeholder="Title*"
+                    placeholder="Add title here."
                     />
                 </label><br/>
-                <label for="selector"> 
+                <label> 
+                Review Item*
+                <br/>
+                    <input 
+                    onChange={(e) => setData(prevData => {
+                        return {
+                            ...prevData, 
+                            reviewItem: e.target.value
+                        }
+                    })}
+                    type="text" 
+                    name="reviewItem"
+                    value={data.reviewItem}
+                    placeholder="Add item here"
+                    />
+                </label><br/>
+                <label htmlFor="selector"> 
                 Category*
                 <br/>
                     <select id="selector"
-                    onChange={(e) => setData({category: e.target.value})}
+                    onChange={(e) => setData(prevData => {
+                        return {
+                            ...prevData, 
+                            category: e.target.value
+                        }
+                    })}
                     name="category"
                     > 
                         <option>Please Select</option> 
@@ -125,9 +171,14 @@ export default function MakeReview({checkUserActive}) {
                     <textarea 
                     type="text" 
                     name="body"
-                    onChange={(e) => setData({body: e.target.value})}
+                    onChange={(e) => setData(prevData => {
+                        return {
+                            ...prevData, 
+                            body: e.target.value
+                        }
+                    })}
                     value={data.body}
-                    placeholder="Review*"
+                    placeholder="Please write reiew here."
                     ></textarea>
                 </label><br/>
                 <label> 
@@ -136,9 +187,14 @@ export default function MakeReview({checkUserActive}) {
                     <input 
                     type="text" 
                     name="rating"
-                    onChange={(e) => setData({rating: e.target.value})}
+                    onChange={(e) => setData(prevData => {
+                        return {
+                            ...prevData, 
+                            rating: e.target.value
+                        }
+                    })}
                     value={data.rating}
-                    placeholder="Review*"
+                    placeholder="Please rate between 0-5"
                     />
                 </label><br/>
                 <input type="hidden" value=""/> 
