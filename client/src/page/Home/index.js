@@ -23,7 +23,6 @@ export default function Home() {
 	return (
 		<div>
 			<h1>Home</h1>
-			<h2>Header</h2>
 			{reviews.map((review, i) => {
 				return <h3 key={i}>{review.reviewItem}
 				<div>
@@ -31,8 +30,6 @@ export default function Home() {
 				</div>
 				</h3>;
 			})}
-			<h2>FooterSticky</h2>
-			<h2>FooterCR</h2>
 		</div>
 	);
 }
