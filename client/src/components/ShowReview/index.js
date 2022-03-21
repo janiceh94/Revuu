@@ -3,36 +3,35 @@ import {useNavigate} from 'react-router-dom';
 import { useEffect, useState } from "react";
 import * as reviewService from "../../api/review.service";
 
-export default function MakeReview() {
+export default function MakeReview({checkUserActive}) {
     const [ review, setReview ] = useState({});
-    const reviewId = window.location.pathname.split("/")[2];
 
-    const getReviewData = async () => {
-        await reviewService.get(reviewId)
+    const getReviewData = async (req) => {
+        await reviewService.get(req.params.id)
                 .then((err, foundReview) => {
                     setReview(foundReview);
                 })
     };
 
+    useEffect(() => {
+		getReviewData();
+	}, []);
+
     const checkImage = () => {
-        if(review.link !== "https://picsum.photos/500?grayscale"){
-            return <a href={review.link} target="_blank" rel="noreferrer">{review.reviewItem}</a>
+        if(review.webLink === ""){
+            return <img src={review.imageLink} />
         } else {
-            return <img src={review.link} alt="review-item"/>
+            return <a href={review.webLink} target="_blank" rel="noreferrer">{review.reviewItem}</a>
         }
     }
 
     const reviewItem = () => {
-        if(review.link !== "https://picsum.photos/500?grayscale"){
-            return 
+        if(review.webLink === ""){
+            return <>{review.reviewItem}</>
         } else {
-            return <h3>Review Item:<br/><>{review.reviewItem}</></h3>
-        }
+            return 
+        } 
     }
-
-    useEffect(() => {
-		getReviewData();
-	}, []);
 
     return(
         <div> 
@@ -41,7 +40,7 @@ export default function MakeReview() {
                 {checkImage()}
             </div>
             <h2>{review.title}</h2>
-            {reviewItem()}
+            <h3>Review Item:<br/>{reviewItem()}</h3>
             <h4>Category:<br/>{review.category}</h4>
             <p>Description:<br/>{review.body}</p>
             <h4>Rating:<br/>{review.rating}</h4>

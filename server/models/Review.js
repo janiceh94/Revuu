@@ -10,7 +10,8 @@ const commentSchema = new Schema ({
 
 const reviewSchema = new Schema(
     {
-        link: {type: String, required: false},
+        webLink: {type: String, required: false},
+        imageLink: {type: String, required: false},
         reviewItem: {type: String, required: true},
         title: {type: String, required: true},
         category: {type: String, required: true}, 
