@@ -23,32 +23,23 @@ export default function MakeReview() {
 			setReview(res.data.data);
             
 		})
-        // console.log("review: ",review);
 	}
 
-    // const getReviewData = async () => {
-    //     await reviewService.get(reviewId)
-    //             .then((err, foundReview) => {
-    //                 setReview(foundReview);
-    //                 console.log("foundReview",foundReview);
-    //             })
-    // };
+    const checkImage = () => {
+        if(review.link !== "https://picsum.photos/500?grayscale"){
+            return <a href={review.link} target="_blank" rel="noreferrer">{review.reviewItem}</a>
+        } else {
+            return <img src={review.link} alt="review-item"/>
+        }
+    }
 
-    // const checkImage = () => {
-    //     if(review.link !== "https://picsum.photos/500?grayscale"){
-    //         return <a href={review.link} target="_blank" rel="noreferrer">{review.reviewItem}</a>
-    //     } else {
-    //         return <img src={review.link} alt="review-item"/>
-    //     }
-    // }
-
-    // const reviewItem = () => {
-    //     if(review.link !== "https://picsum.photos/500?grayscale"){
-    //         return 
-    //     } else {
-    //         return <h3>Review Item:<br/><>{review.reviewItem}</></h3>
-    //     }
-    // }
+    const reviewItem = () => {
+        if(review.link !== "https://picsum.photos/500?grayscale"){
+            return 
+        } else {
+            return <h3>Review Item:<br/><>{review.reviewItem}</></h3>
+        }
+    }
 
     useEffect(() => {
        // getReviewIdFunc();
@@ -58,11 +49,11 @@ export default function MakeReview() {
     return(
         <div> 
             <h1>Show Review</h1>
-            {/* <div id="image">
+            <div id="image">
                 {checkImage()}
-            </div> */}
+            </div>
             <h2>{review.title}</h2>
-            {/* {reviewItem()} */}
+            {reviewItem()}
             <h4>Category:<br/>{review.category}</h4>
             <p>Description:<br/>{review.body}</p>
             <h4>Rating:<br/>{review.rating}</h4>
