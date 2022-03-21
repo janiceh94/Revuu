@@ -67,8 +67,8 @@ function App() {
           <Route path="review/:id" element={<ShowReview />} />
           <Route path="review/:id/edit" element={<EditReview />} />
         </Routes>
-        <FootStick isLoggedIn={isLoggedIn}/>
         <FootCR/>
+        <FootStick isLoggedIn={isLoggedIn}/>
     </div>
       );
   } else {
@@ -85,8 +85,8 @@ function App() {
           <Route path="review/:id" element={<ShowReview />} />
           <Route path="review/:id/edit" element={<EditReview />} />
         </Routes>
-        <FootStick/>
         <FootCR/>
+        <FootStick/>
     </div>
       )
   }
