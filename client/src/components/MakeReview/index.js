@@ -2,6 +2,7 @@ import React from 'react';
 import {useNavigate} from 'react-router-dom';
 import { useState } from "react";
 import * as reviewService from "../../api/review.service";
+import FakePage from '../FakePage';
 
 export default function MakeReview({checkUserActive}) {
     const navigate = useNavigate();
@@ -21,6 +22,8 @@ export default function MakeReview({checkUserActive}) {
             alert("Please fill out all fields");
         }else if (data.rating > 5 || data.rating < 0){
             alert("Please rate the noun from 0-5.");
+        } else if (data.category === "Please Select") {
+            alert("Please select a category.");
         } else {
             await reviewService.create(data)
                 .then((err, createdReview)=> {
@@ -33,9 +36,8 @@ export default function MakeReview({checkUserActive}) {
                     setData({rating: undefined});
                     setData({user: ""});
                 })
-        }
-        
-    }
+        };
+    };
 
     return(
         <div> 
