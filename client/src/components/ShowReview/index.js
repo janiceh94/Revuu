@@ -6,6 +6,7 @@ import * as reviewService from "../../api/review.service";
 export default function MakeReview({checkUserActive}) {
     const navigate = useNavigate();
     const [ review, setReview ] = useState({
+        link: "https://picsum.photos/200?grayscale",
         reviewItem: "Shoes",
         title: "I hate these Shoes",
         category: "Clothing",
@@ -27,6 +28,7 @@ export default function MakeReview({checkUserActive}) {
 
     return(
         <div> 
+            <h1>Show Review</h1>
             
         </div>
     )
