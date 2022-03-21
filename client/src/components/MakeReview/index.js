@@ -27,8 +27,8 @@ export default function MakeReview() {
             alert("Please select a category.");
         } else {
             await reviewService.create(data)
-                .then((err, createdReview)=> {
-                    //console.log(createdReview);
+                .then((createdReview) => {
+                    console.log(createdReview);
                     setData(prevData => {
                         return {
                             ...prevData, 
@@ -41,7 +41,7 @@ export default function MakeReview() {
                             user: ""
                         }
                     })
-                    navigate(`/review/${createdReview._id}`)
+                    navigate(`/review/${createdReview.data.data._id}`)
                 })
         };
     };
