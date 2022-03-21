@@ -238,3 +238,20 @@ input:checked + .slider:before {
 #reviewItem-link {
     display: none;
 }
+
+/* !SECTION */
+/*
+SECTION PAGES: Show Review
+*/
+
+#showReview {
+    display: flex;
+    flex-direction: column;
+    padding: 2vh;
+    justify-content: space-around;
+}
+
+#showReview #image {
+    display: flex;
+    justify-content: center;
+}
