@@ -50,13 +50,13 @@ export default function MakeReview({checkUserActive}) {
                     <label>Image URL </label>
                     <label class="switch">
                     <input 
-                         onChange={(e) => {
+                        onChange={(e) => {
                             if(e.target.checked){
                                 document.querySelector('#image').style.display = 'none';
                             } else {
                                 document.querySelector('#image').style.display = 'block';
                             };
-                         }} 
+                        }} 
                         id="slider" 
                         type="checkbox"/>
                     <span class="slider round"></span>
@@ -82,22 +82,7 @@ export default function MakeReview({checkUserActive}) {
                     placeholder="Title*"
                     />
                 </label><br/>
-<<<<<<< HEAD
                 <label for="selector"> 
-=======
-                <label>
-                Noun*
-                <br/>
-                    <input 
-                    onChange={(e) => setData({reviewItem: e.target.value})}
-                    type="text" 
-                    name="reviewItem"
-                    value={data.reviewItem}
-                    placeholder="Noun*"
-                    /> 
-                </label><br/>
-                <label> 
->>>>>>> 8512f0e0e541eeab996c621597f9a5ac179e9b91
                 Category*
                 <br/>
                     <select id="selector"
