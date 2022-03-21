@@ -6,8 +6,9 @@ function Landing({checkUserActive}) {
     return (
         <div>
             <div className="landing">
-            <Login checkUserActive={checkUserActive}/>
-            <NavLink to ='home'
+            <Login id="Login" checkUserActive={checkUserActive}/>
+            <Register id="Register"/>
+            {/* <NavLink to ='home'
                 style = {({isActive}) => ({
                     color: isActive ? 'green' : 'blue'
                 })}>
@@ -24,10 +25,7 @@ function Landing({checkUserActive}) {
                     color: isActive ? 'green' : 'blue'
                 })}>
                     Profile
-            </NavLink>
-            </div>
-            <div>
-                <Register/>
+            </NavLink> */}
             </div>
       </div>
     );
