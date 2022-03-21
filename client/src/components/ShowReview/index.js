@@ -6,19 +6,19 @@ import apiClient from '../../api/axios.config';
 
 export default function MakeReview() {
     const [review, setReview] = useState({});
-    const [reviewId, setReviewId] = useState("")
+    //const [reviewId, setReviewId] = useState("")
     // const review = {};
     // const reviewId = window.location.pathname.split("/")[2];
 
     // setReviewId(window.location.pathname.split("/")[2])
 
-    const getReviewIdFunc = async () => {
-        await setReviewId(window.location.pathname.split("/")[2]);
-        console.log("reviewIDFunc:", reviewId);
-    }
+    // const getReviewIdFunc = async () => {
+    //     await setReviewId(window.location.pathname.split("/")[2]);
+    //     console.log("reviewIDFunc:", reviewId);
+    // }
 	const getReview = async () => {
-		await apiClient.get(`/api/review/${reviewId}`).then((res)=>{
-            console.log("reviewID:", reviewId);
+		await apiClient.get(`/api/review/${window.location.pathname.split("/")[2]}`).then((res)=>{
+            console.log("reviewID:", window.location.pathname.split("/")[2]);
             console.log("res.data.data: ",res.data.data);
 			setReview(res.data.data);
             
@@ -51,7 +51,7 @@ export default function MakeReview() {
     // }
 
     useEffect(() => {
-        getReviewIdFunc();
+       // getReviewIdFunc();
 		getReview();
 	}, []);
 
