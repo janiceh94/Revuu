@@ -1,22 +1,17 @@
 import { useState } from "react";
-import {useNavigate} from 'react-router-dom';
 import * as authService from "../../api/auth.service";
 
 const Register = () => {
 	const [email, setEmail] = useState("");
 	const [password, setPassword] = useState("");
 	const [successMsg, setSuccessMsg] = useState("");
-	const navigate = useNavigate();
 
 	const handleSubmit = async (e) => {
 		e.preventDefault();
 		await authService.register(email, password);
-		// console.log ("email:", email, "password:", password);
 		setEmail("");
 		setPassword("");
-		setSuccessMsg("SUCCESS YAY!");
-		navigate('/home');
-
+		setSuccessMsg("Registration Successful. Please Login");
 	};
 
 	return (
