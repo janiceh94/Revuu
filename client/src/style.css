@@ -180,6 +180,25 @@ SECTION PAGES: HOME
 SECTION PAGES: USER PROFILE
 */
 
+#userProfile{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-top: 1rem;
+}
+
+#userProfile > img{
+    border-radius: 50%;
+    width: 150px; 
+    height: 150px; 
+    object-fit: fill;
+}
+#bio{
+    background-color: var(--secondary-gray);
+    padding:1rem 0.5rem 1rem 0.5rem;
+    margin:1rem 1rem 1rem 1rem;
+}
+
 /* !SECTION */
 /*
 SECTION PAGES: Create Review
