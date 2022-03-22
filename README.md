@@ -24,5 +24,8 @@ As a user I want to have this easily accessible on my mobile device </br>
 - JavaScript
 - React
 
+## App:
+http://revuu.herokuapp.com/api
+
 ## Additional Information:
 Developed by Audrey Bledsoe, Evan Keith, Janice Kwak, and Samuel Mark
