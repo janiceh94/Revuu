@@ -10,7 +10,6 @@ const userSchema = new Schema ({
     bio: {type: String},
     reviews:[{type: Schema.Types.ObjectId, ref:'Review'}],
     follows: [{type: Schema.Types.ObjectId,ref: "User"}],
-    //NOTE THE COMMENTS KEY REFERS TO REVIEWS YOU HAVE COMMENTED ON, NOT THE COMMENTS THEMSELVES. (CAN'T DO THE COMMENTS UNLESS WE MAKE A NEW REFERENCED SCHEMA)
     comments:[{type: Schema.Types.ObjectId,ref: "Review"}],
 })
 

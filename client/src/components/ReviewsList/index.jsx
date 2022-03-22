@@ -17,7 +17,6 @@ function ReviewsList(){
 	};
 
 	const reviewId = async (id) => {
-		console.log('reviewId:')
 		navigate(`/review/${id}`);
 	}
 
@@ -27,13 +26,9 @@ function ReviewsList(){
 
 	return(
 		<div>
-			{/* <Review/>
-			<Review/>
-			<Review/> */}
-
 			{reviews.map((review, i)=>{
 				return(
-					<div /* onClick = {() => reviewId(review._id)} */>
+					<div>
 					<Review key={i} data={review}/>
 					<button id='homebtn' onClick = {() => reviewId(review._id)}>View Review</button>
 					</div>

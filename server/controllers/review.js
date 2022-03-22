@@ -4,12 +4,12 @@ const index = (req, res) => {
     db.Review.find().exec((err, allReviews) => {
         if(err){
             return res.status(400).json({
-                message:'Sorry', 
+                message:'Unable to find reviews', 
                 error: err,
             })
         }
         return res.status(200).json({
-            message: 'Yay yay',
+            message: 'All reviews found',
             data: allReviews,
         })
     })
@@ -34,12 +34,12 @@ const show = (req, res) => {
     db.Review.findById(req.params.id, (err, foundReview) => {
         if(err){
             return res.status(400).json({
-                message: 'Sorry', 
+                message: 'Unable to show review', 
                 error: err,
             })
         }
         return res.status(200).json({
-            message: 'Yay',
+            message: 'Review found',
             data: foundReview,
         })
     })
@@ -59,12 +59,12 @@ const create = (req, res) => {
         });
         if(err){
             return res.status(400).json({
-                message: 'Sorry',
+                message: 'Unable to create review',
                 error: err,
             })
         }
         return res.status(201).json({
-            message: 'Yay',
+            message: 'Review created',
             data: savedReview
         })
     })
@@ -78,12 +78,12 @@ const update = (req, res) => {
         (err, updatedReview) => {
             if(err){
                 return res.status(400).json({
-                    message: 'Sorry',
+                    message: 'Unable to update',
                     error: err,
                 })
             }
             return res.status(202).json({
-                message: 'Yay',
+                message: 'Update Successful',
                 data: updatedReview,
             })
         })
@@ -103,12 +103,12 @@ const destroy = (req, res) => {
         })
         if(err){
             return res.status(400).json({
-                message: 'Sorry',
+                message: 'Error deleting review',
                 error: err,
             })
         }
         return res.status(200).json({
-            message: 'Yay',
+            message: 'Review deleted',
             data: deletedReview
         })
     })
