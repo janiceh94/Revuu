@@ -1,21 +1,35 @@
 import React from 'react';
+import axios from 'axios';
 import {useNavigate} from 'react-router-dom';
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import * as reviewService from "../../api/review.service";
 
 
 export default function MakeReview() {
     const navigate = useNavigate();
+    let userID = JSON.parse(`${localStorage.getItem("userID")}`);
 
     let [data, setData] = useState({
-        link: "https://picsum.photos/500?grayscale",
+        link: "",
         reviewItem: "",
         title: "",
         category: "",
         body: "",
         rating: undefined,
-        user: "6237ecb0df4acbfe23cc5ae7" //test@test.com
+        user: `${userID}` 
     });
+
+    const getImageUrl = async() => {
+        await axios.get("https://picsum.photos/500?grayscale")
+                .then((response) => {
+                    setData(prevData => {
+                        return {
+                            ...prevData, 
+                            link: response.request.responseURL
+                        }
+                    })
+                })
+    }
 
     const handleSubmit = async(e) => {
         e.preventDefault();
@@ -32,7 +46,7 @@ export default function MakeReview() {
                     setData(prevData => {
                         return {
                             ...prevData, 
-                            link: "https://picsum.photos/500?grayscale",
+                            link: "",
                             reviewItem: "",
                             title: "",
                             category: "",
@@ -46,26 +60,18 @@ export default function MakeReview() {
         };
     };
 
-    const changeLink = () => {
-        setData(prevData => {
-            if(!prevData.link.includes("jpg") && !prevData.link.includes("png")){
-                return {
-                    ...prevData, 
-                    link: "https://picsum.photos/500?grayscale"
-                }
-            } else {
-                return {
-                    ...prevData, 
-                    link: prevData.link
-                }
-            }
-        })}
+
+    useEffect(() => {
+        getImageUrl();
+    }, []);
 
     return(
-        <div> 
-            <img id="image" src={data.link} alt="item_image"/>
-            <a id="reviewItem-link" href={data.link} target="_blank" rel="noreferrer">{data.reviewItem}</a>
-            <form>
+        <div className="showReview"> 
+            <div className="image">
+                <img id="image" src={data.link} alt="item_image"/>
+                <a id="reviewItem-link" href={data.link} target="_blank" rel="noreferrer">{data.reviewItem}</a>
+            </div>
+            <form id="editForm">
             <label>
                 <br/>
                     <label>Image URL </label>
@@ -78,7 +84,6 @@ export default function MakeReview() {
                             } else {
                                 document.querySelector('#reviewItem-link').style.display = 'none';
                                 document.querySelector('#image').style.display = 'block';
-                                changeLink();
                             };
                         }} 
                         id="slider" 
@@ -115,6 +120,7 @@ export default function MakeReview() {
                     name="title"
                     value={data.title}
                     placeholder="Add title here."
+                    maxLength="60"
                     />
                 </label><br/>
                 <label> 
@@ -131,6 +137,7 @@ export default function MakeReview() {
                     name="reviewItem"
                     value={data.reviewItem}
                     placeholder="Add item here"
+                    maxLength="60"
                     />
                 </label><br/>
                 <label htmlFor="selector"> 
@@ -148,7 +155,8 @@ export default function MakeReview() {
                         <option>Please Select</option> 
                         <option>Restaurants</option>
                         <option>Tech Products</option>
-                        <option>Cooking Gagets</option>
+                        <option>Cooking Gadgets</option>
+                        <option>Food/Drink</option>
                         <option>Books</option>
                         <option>Destinations/Landmarks</option>
                         <option>Clothes/Accessories</option>
@@ -162,7 +170,7 @@ export default function MakeReview() {
                         <option>Medical/Veterinarian services</option>
                         <option>Plants</option>
                         <option>People</option>
-                        <option>Misc</option>
+                        <option>Other</option>
                     </select>
                 </label><br/>
                 <label> 
@@ -196,8 +204,7 @@ export default function MakeReview() {
                     value={data.rating}
                     placeholder="Please rate between 0-5"
                     />
-                </label><br/>
-                <input type="hidden" value=""/> 
+                </label><br/><br/>
             </form>
             <button onClick={handleSubmit}>Publish</button>
         </div>

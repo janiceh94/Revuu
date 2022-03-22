@@ -13,24 +13,13 @@ export default function MakeReview() {
                     setReview(foundReview);
                 })
     };
-
-    // const checkImage = () => {
-    //     if(review.link !== "https://picsum.photos/500?grayscale"){
-    //         return <a href={review.link} target="_blank" rel="noreferrer">{review.reviewItem}</a>
-    //     } else {
-    //         return <img src={review.link} alt="review-item"/>
-    //     }
-    // }
-
-    // const reviewItem = () => {
-    //     if(review.link !== "https://picsum.photos/500?grayscale"){
-    //         return 
-    //     } else {
-    //         return <h3>Review Item:<br/><>{review.reviewItem}</></h3>
-    //     }
-    // }
+  
+    const handleEdit = () => {
+        return navigate('edit')
+    }
 
     useEffect(() => {
+
 		getReviewData();
 	}, []);
 
@@ -39,6 +28,19 @@ export default function MakeReview() {
             {/* <h1>Show Review</h1>
             <div id="image">
                 {checkImage()}
+                </div>
+                <h2>{review.title}</h2>
+                {reviewItem()}
+                <h4>Category:
+                <p>{review.category}</p>
+                </h4>
+                <h4>Description:
+                <p>{review.body}</p>
+                </h4>
+                <h4>Rating:
+                <p>{review.rating}</p>
+                </h4>
+                <button onClick={handleEdit}>Edit</button>
             </div>
             <h2>{review.title}</h2>
             {reviewItem()}
@@ -47,4 +49,5 @@ export default function MakeReview() {
             <h4>Rating:<br/>{review.rating}</h4> */}
         </div>
     )
+
 }
