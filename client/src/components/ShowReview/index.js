@@ -10,10 +10,7 @@ export default function ShowReview() {
 
 	const getReview = async () => {
 		await apiClient.get(`/api/review/${window.location.pathname.split("/")[2]}`).then((res)=>{
-            console.log("reviewID:", window.location.pathname.split("/")[2]);
-            console.log("res.data.data: ",res.data.data);
 			setReview(res.data.data);
-            
 		})
 	}
 
