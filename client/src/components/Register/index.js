@@ -4,14 +4,19 @@ import * as authService from "../../api/auth.service";
 const Register = () => {
 	const [email, setEmail] = useState("");
 	const [password, setPassword] = useState("");
-	const [successMsg, setSuccessMsg] = useState("");
 
 	const handleSubmit = async (e) => {
 		e.preventDefault();
-		await authService.register(email, password);
-		setEmail("");
-		setPassword("");
-		setSuccessMsg("Registration Successful. Please Login");
+		await authService.register(email, password).then((err) => {
+			if(err){
+				console.log(err);
+			} else {
+				setEmail("");
+				setPassword("");
+				document.querySelector('#registration').style.display = "block";
+			}
+		})
+		
 	};
 
 	return (
@@ -39,7 +44,7 @@ const Register = () => {
 				<button onClick={handleSubmit}>
 					Register
 				</button>
-				{/* <h1 style={{ color: "green" }}>{successMsg}</h1> */}
+				<p id="registration">Registration Successful. Please Login.</p>
 			</form>
 		</div>
 	);

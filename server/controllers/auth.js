@@ -50,7 +50,6 @@ const login = async (req, res) => {
                 'Banana',
                 {expiresIn: '2h'}
             )
-            console.log('token', token)
             return res.status(200).json({
                 status: 200,
                 message: 'Logged In',

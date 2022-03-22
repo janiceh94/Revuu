@@ -54,7 +54,6 @@ const create = (req, res) => {
                     error: err,
                 })
             }
-            //foundUser.reviews.push(savedReview._id);
             foundUser.reviews.push(savedReview);
             foundUser.save();
         });
@@ -99,7 +98,6 @@ const destroy = (req, res) => {
                     error: err,
                 })
             }
-            console.log("body ",req.body, "params ", req.params);
             foundUser.reviews.splice(foundUser.reviews.indexOf(deletedReview),1);
             foundUser.save();
         })

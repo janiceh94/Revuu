@@ -11,6 +11,7 @@ const commentSchema = new Schema ({
 const reviewSchema = new Schema(
     {
         link: {type: String, required: false},
+        linkIsImage: {type: Boolean, required: false},
         reviewItem: {type: String, required: true},
         title: {type: String, required: true},
         category: {type: String, required: true}, 

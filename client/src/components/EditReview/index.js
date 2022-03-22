@@ -8,12 +8,8 @@ import * as reviewService from "../../api/review.service";
 export default function EditReview() {
     const navigate = useNavigate();
     let currentUserID = JSON.parse(`${localStorage.getItem("userID")}`);
-    
-    console.log("currentUserId: ", currentUserID); 
-    
     let [review, setReview] = useState({});
 
-    console.log("review_user: ", review.user);
 
     const getReview = async () => {
 		await apiClient.get(`/api/review/${window.location.pathname.split("/")[2]}`).then((res)=>{
@@ -24,95 +20,120 @@ export default function EditReview() {
 
     const handleSubmit = async(e) => {
         e.preventDefault();
-        if(Object.values(review).includes("") || Object.values(review).includes(undefined)){
-            alert("Please fill out all fields");
-        }else if (review.rating > 5 || review.rating < 0){
-            alert("Please rate the noun from 0-5.");
-        } else if (review.category === "Please Select") {
-            alert("Please select a category.");
+        if(currentUserID === review.user){
+            if(Object.values(review).includes("") || Object.values(review).includes(undefined)){
+                alert("Please fill out all fields");
+            }else if (review.rating > 5 || review.rating < 0){
+                alert("Please rate the noun from 0-5.");
+            } else if (review.category === "Please Select") {
+                alert("Please select a category.");
+            } else {
+                await reviewService.update(review._id, review)
+                    .then((updatedReview) => {
+                        navigate(`/review/${review._id}`);
+                    })
+            };
         } else {
-            await reviewService.update(review._id, review)
-                .then((updatedReview) => {
-                    //console.log(updatedReview);
-                    navigate(`/review/${review._id}`);
-                })
-        };
+            alert("You can only edit reviews that you've created.");
+        }
+        
     };
 
     const handleDelete = async(e) => {
         e.preventDefault();
-
-        if(window.confirm("Are you sure you want to delete this review?") === true){
-            await reviewService.destroy(review._id)
-                    .then((err, deletedReview) => {
-                        alert("Review successfully deleted!");
-                        navigate("/home");
-                    })
-        };
+        if(currentUserID === review.user){
+            if(window.confirm("Are you sure you want to delete this review?") === true){
+                await reviewService.destroy(review._id)
+                        .then((err, deletedReview) => {
+                            alert("Review successfully deleted!");
+                            navigate("/home");
+                        })
+            };
+        } else {
+            alert("You can only edit reviews that you've created.");
+        }
+        
     };
 
-    const changeLink = () => {
-        setReview(prevData => {
-            if(!prevData.link.includes("jpg") && !prevData.link.includes("png")){
-                return {
-                    ...prevData, 
-                    link: "https://picsum.photos/500?grayscale"
-                }
+    const handleEditImage = (e) => {
+        e.preventDefault(); 
+        if(document.querySelector("#imageID").style.display === "none"){
+            document.querySelector("#imageID").style.display = "flex";
+
+            if(review.linkIsImage){
+                document.querySelector('#reviewItem-link').style.display = 'none';
+                document.querySelector('#image').style.display = 'flex';
             } else {
-                return {
-                    ...prevData, 
-                    link: prevData.link
-                }
-            }
-        })
+                document.querySelector('#slider').checked = true;;
+                document.querySelector('#image').style.display = 'none';
+                document.querySelector('#reviewItem-link').style.display = 'block';
+            }            
+        } else {
+            document.querySelector("#imageID").style.display = "none"
+        }
     }
 
     useEffect(() => {
         getReview();
     }, []);
-    
+
     return(
             <div className="showReview"> 
-                <div className="image">
+                <div className="image" id="imageID">
                     <img  id="image" src={review.link} alt="item_image"/>
                     <a id="reviewItem-link" href={review.link} target="_blank" rel="noreferrer">{review.reviewItem}</a>
-                </div>
-                <form id="editForm">
-                <label>
-                    <br/>
+                    <form>
+                        <label>
                         <label>Image URL </label>
-                        <label className="switch">
-                        <input 
-                            onChange={(e) => {
-                                if(e.target.checked){
-                                    document.querySelector('#image').style.display = 'none';
-                                    document.querySelector('#reviewItem-link').style.display = 'block';
-                                } else {
-                                    document.querySelector('#reviewItem-link').style.display = 'none';
-                                    document.querySelector('#image').style.display = 'block';
-                                    changeLink();
-                                };
-                            }} 
-                            id="slider" 
-                            type="checkbox"/>
-                        <span className="slider round"></span>
-                        </label>
-                        <label> Web Link</label>
-                        <br/>
-                        <input 
-                        onChange={(e) => {
-                                setReview(prevreview => {
-                                    return {
-                                        ...prevreview, 
-                                        link: e.target.value
-                                    }
-                                })}}
-                        value={review.link}
-                        type="text" 
-                        name="link"
-                        id="link"
-                        /> 
-                    </label><br/><br/>
+                            <label className="switch">
+                            <input 
+                                onChange={(e) => {
+                                    if(e.target.checked){
+                                        document.querySelector('#image').style.display = 'none';
+                                        document.querySelector('#reviewItem-link').style.display = 'block';
+                                        setReview(prevReview => {
+                                            return {
+                                                ...prevReview, 
+                                                linkIsImage: false
+                                            }
+                                        })
+                                    } else {
+                                        document.querySelector('#reviewItem-link').style.display = 'none';
+                                        document.querySelector('#image').style.display = 'block';
+                                        setReview(prevReview => {
+                                            return {
+                                                ...prevReview, 
+                                                linkIsImage: true
+                                            }
+                                        })
+                                    };
+                                }} 
+                                id="slider" 
+                                type="checkbox"
+                                />
+                            <span className="slider round"></span>
+                            </label>
+                            <label> Web Link</label>
+                            <br/>
+                            <input 
+                                onChange={(e) => {
+                                        setReview(prevReview => {
+                                            return {
+                                                ...prevReview, 
+                                                link: e.target.value
+                                            }
+                                        })}}
+                                value={review.link}
+                                type="text" 
+                                name="link"
+                                id="link"
+                                /> 
+                            </label>
+                        </form>
+                </div>
+                <button onClick={handleEditImage}>Edit Image</button> 
+                <form id="editForm">                        
+                        <br/>                    
                     <label> 
                     Title*
                     <br/>
@@ -127,6 +148,7 @@ export default function EditReview() {
                         name="title"
                         value={review.title}
                         placeholder="Add title here."
+                        maxLength="60"
                         />
                     </label><br/><br/>
                     <label> 
@@ -143,6 +165,7 @@ export default function EditReview() {
                         name="reviewItem"
                         value={review.reviewItem}
                         placeholder="Add item here"
+                        maxLength="60"
                         />
                     </label><br/><br/>
                     <label htmlFor="selector"> 
@@ -161,7 +184,8 @@ export default function EditReview() {
                             <option>Please Select</option> 
                             <option>Restaurants</option>
                             <option>Tech Products</option>
-                            <option>Cooking Gagets</option>
+                            <option>Cooking Gadgets</option>
+                            <option>Food/Drink</option>
                             <option>Books</option>
                             <option>Destinations/Landmarks</option>
                             <option>Clothes/Accessories</option>
@@ -175,7 +199,7 @@ export default function EditReview() {
                             <option>Medical/Veterinarian services</option>
                             <option>Plants</option>
                             <option>People</option>
-                            <option>Misc</option>
+                            <option>Other</option>
                         </select>
                     </label><br/><br/>
                     <label> 

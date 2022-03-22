@@ -2,7 +2,6 @@ import {BrowserRouter, Route, Routes} from 'react-router-dom';
 import Header from "../Header"
 import FootStick from "../FooterSticky";
 import FootCR from "../FooterCR";
-import FakePage from "../FakePage";
 import Home from '../../page/Home';
 import UserProfile from '../../page/UserProfile'; 
 import Landing from '../../page/Landing'; 
@@ -50,7 +49,6 @@ function App() {
   useEffect(() => {
       fetchReviews();
       checkLogin();
-      //window.location.reload(false);
   }, []);
 
   if (isLoggedIn) {
@@ -61,8 +59,6 @@ function App() {
         <Route path="/" element={<Landing checkUserActive={() => dispatch({type: "setIsLoggedIn", payload: true})}/>}/>          
         <Route path='home' element = {<Home />}/>
           <Route path='profile' element = {<UserProfile />}/>
-          {/* Delete FakePage later */}
-          <Route path='fake-page' element = {<FakePage />}/> 
           <Route path="review" element={<CreateReview  />}/>
           <Route path="review/:id" element={<ShowReview />} />
           <Route path="review/:id/edit" element={<EditReview />} />
@@ -75,19 +71,17 @@ function App() {
       return(
         <div className="App">
           <Header/>
-        <Routes>
-          <Route path="/" element={<Landing checkUserActive={() => dispatch({type: "setIsLoggedIn", payload: true})}/>}/>
-          {/* comment out  */}
-          <Route path='home' element = {<Home />}/>
-          <Route path='profile' element = {<UserProfile />}/>
-          <Route path='fake-page' element = {<FakePage />}/> 
-          <Route path="review" element={<CreateReview  />}/>
-          <Route path="review/:id" element={<ShowReview />} />
-          <Route path="review/:id/edit" element={<EditReview />} />
-        </Routes>
-        <FootCR/>
-        <FootStick/>
-    </div>
+          <Routes>
+            <Route path="/" element={<Landing checkUserActive={() => dispatch({type: "setIsLoggedIn", payload: true})}/>}/>
+            <Route path='home' element = {<Landing checkUserActive={() => dispatch({type: "setIsLoggedIn", payload: true})}/>}/>
+            <Route path='profile' element = {<Landing checkUserActive={() => dispatch({type: "setIsLoggedIn", payload: true})}/>}/>
+            <Route path="review" element={<Landing checkUserActive={() => dispatch({type: "setIsLoggedIn", payload: true})}/>}/>
+            <Route path="review/:id" element={<Landing checkUserActive={() => dispatch({type: "setIsLoggedIn", payload: true})}/>} />
+            <Route path="review/:id/edit" element={<Landing checkUserActive={() => dispatch({type: "setIsLoggedIn", payload: true})}/>} />
+          </Routes>
+          <FootCR/>
+          <FootStick/>
+        </div>
       )
   }
 }

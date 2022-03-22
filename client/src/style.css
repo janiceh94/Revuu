@@ -23,6 +23,8 @@ body{
     font-family: 'Overpass Mono', monospace;
     color: var(--secondary-offwhite);
     max-width: 1440px;
+    display: flex;
+    justify-content: center;
 }
 
 #logo{
@@ -81,21 +83,18 @@ input{
 SECTION Mobile page details. Please make note of any changes
 */
 
-@media only screen and (max-width: 600px) {
+@media only screen and (min-width: 600px) {
     .App {
-      width:100vw;
+      width:60vw;
     }
-
     img {
         max-height: 100vh;
     }
     button{
         font-size: 14pt;
     }
-
-
 }
-  
+
 
 /* !SECTION */
 /*
@@ -165,6 +164,10 @@ SECTION PAGES: LANDING
     display: flex;
     flex-direction: column;
     align-items: center;
+}
+
+#registration {
+    display: none;
 }
 
 /* !SECTION */
@@ -245,12 +248,37 @@ input:checked + .slider:before {
     border-radius: 50%;
 }
 
-#image {
+#reviewItem-link {
     display: block;
+    background-color: var(--secondary-gray);
+    text-align: center;
+    padding: 5vh;
 }
 
-#reviewItem-link {
-    display: none;
+/* !SECTION */
+/*
+SECTION PAGES: Review Component
+*/
+
+.reviewCard{
+    display: flex;
+    flex-direction:column;
+    align-items: center;
+}
+#homebtn{
+    border-bottom: #05dab3 1px solid;
+    padding: 0 150px 1rem 150px;
+    align-items: center;
+    text-align: center;
+    margin: auto;
+    display:flex;
+}
+.reviewCard h3, h5{
+    text-align: center;
+    text-decoration: #f6efef;
+}
+.reviewCard h3 {
+    font-size: 14pt;
 }
 
 /* !SECTION */
@@ -268,6 +296,8 @@ SECTION PAGES: Show Review
 .showReview .image {
     display: flex;
     justify-content: center;
+    width: 100%;
+    flex-wrap: wrap;
 }
 
 .editButtons {
@@ -287,3 +317,12 @@ SECTION PAGES: Show Review
 #editForm select {
     width: 100%;
 }
+
+#imageID {
+    display: none;
+    text-align: center;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+}
+

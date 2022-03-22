@@ -1,12 +1,5 @@
 const db = require('../models');
 
-// const showAll = (req, res) => {
-
-// }
-
-// const showOne = () => {
-    
-// }
 
 const create = (req, res) => {
     db.Review.findById(req.params.rid, (err, foundReview) => {
@@ -73,8 +66,6 @@ const destroy = (req, res) => {
 }
 
 module.exports = {
-    // showAll,
-    // showOne,  
     create, 
     update, 
     destroy
