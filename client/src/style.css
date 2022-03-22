@@ -244,14 +244,14 @@ input:checked + .slider:before {
 SECTION PAGES: Show Review
 */
 
-#showReview {
+.showReview {
     display: flex;
     flex-direction: column;
     padding: 2vh;
     justify-content: space-around;
 }
 
-#showReview #image {
+.showReview .image {
     display: flex;
     justify-content: center;
 }

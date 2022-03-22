@@ -51,7 +51,7 @@ export default function ShowReview() {
 
     if(currentUserID === review.user){
         return (
-            <div id="showReview"> 
+            <div className="showReview"> 
                 <div id="image">
                     {checkImage()}
                 </div>
@@ -71,8 +71,8 @@ export default function ShowReview() {
         )
     } else {
         return(
-            <div id="showReview"> 
-                <div id="image">
+            <div className="showReview"> 
+                <div className="image">
                     {checkImage()}
                 </div>
                 <h2>{review.title}</h2>

@@ -1,38 +1,45 @@
 import React from 'react';
 import {useNavigate} from 'react-router-dom';
-import { useState } from "react";
+import { useEffect, useState } from "react";
+import apiClient from "../../api/axios.config";
 import * as reviewService from "../../api/review.service";
 
 
 export default function EditReview() {
     const navigate = useNavigate();
-    let userID = JSON.parse(`${localStorage.getItem("userID")}`);
 
-    let [data, setData] = useState({
+    let [review, setReview] = useState({
         link: "https://picsum.photos/500?grayscale",
-        reviewItem: "",
-        title: "",
-        category: "",
-        body: "",
-        rating: undefined,
-        user: `${userID}` 
+        reviewItem: "Review Item-",
+        title: "Title-",
+        category: "People",
+        body: "body-",
+        rating: 3,
+        user: "",
     });
+
+    const getReview = async () => {
+		await apiClient.get(`/api/review/${window.location.pathname.split("/")[2]}/edit`).then((res)=>{
+			setReview(res.data.data);
+            
+		})
+	}
 
     const handleSubmit = async(e) => {
         e.preventDefault();
-        if(Object.values(data).includes("") || Object.values(data).includes(undefined)){
+        if(Object.values(review).includes("") || Object.values(review).includes(undefined)){
             alert("Please fill out all fields");
-        }else if (data.rating > 5 || data.rating < 0){
+        }else if (review.rating > 5 || review.rating < 0){
             alert("Please rate the noun from 0-5.");
-        } else if (data.category === "Please Select") {
+        } else if (review.category === "Please Select") {
             alert("Please select a category.");
         } else {
-            await reviewService.create(data)
+            await reviewService.create(review)
                 .then((createdReview) => {
                     console.log(createdReview);
-                    setData(prevData => {
+                    setReview(prevreview => {
                         return {
-                            ...prevData, 
+                            ...prevreview, 
                             link: "https://picsum.photos/500?grayscale",
                             reviewItem: "",
                             title: "",
@@ -48,7 +55,7 @@ export default function EditReview() {
     };
 
     const changeLink = () => {
-        setData(prevData => {
+        setReview(prevData => {
             if(!prevData.link.includes("jpg") && !prevData.link.includes("png")){
                 return {
                     ...prevData, 
@@ -62,10 +69,16 @@ export default function EditReview() {
             }
         })}
 
+    useEffect(() => {
+        getReview();
+    }, []);
+
     return(
-        <div> 
-            <img id="image" src={data.link} alt="item_image"/>
-            <a id="reviewItem-link" href={data.link} target="_blank" rel="noreferrer">{data.reviewItem}</a>
+        <div className="showReview"> 
+            <div className="image">
+                <img  id="image" src={review.link} alt="item_image"/>
+                <a id="reviewItem-link" href={review.link} target="_blank" rel="noreferrer">{review.reviewItem}</a>
+            </div>
             <form>
             <label>
                 <br/>
@@ -90,13 +103,13 @@ export default function EditReview() {
                     <br/>
                     <input 
                     onChange={(e) => {
-                            setData(prevData => {
+                            setReview(prevreview => {
                                 return {
-                                    ...prevData, 
+                                    ...prevreview, 
                                     link: e.target.value
                                 }
                             })}}
-                    value={data.link}
+                    value={review.link}
                     type="text" 
                     name="link"
                     id="link"
@@ -106,15 +119,15 @@ export default function EditReview() {
                 Title*
                 <br/>
                     <input 
-                    onChange={(e) => setData(prevData => {
+                    onChange={(e) => setReview(prevreview => {
                         return {
-                            ...prevData, 
+                            ...prevreview, 
                             title: e.target.value
                         }
                     })}
                     type="text" 
                     name="title"
-                    value={data.title}
+                    value={review.title}
                     placeholder="Add title here."
                     />
                 </label><br/>
@@ -122,15 +135,15 @@ export default function EditReview() {
                 Review Item*
                 <br/>
                     <input 
-                    onChange={(e) => setData(prevData => {
+                    onChange={(e) => setReview(prevreview => {
                         return {
-                            ...prevData, 
+                            ...prevreview, 
                             reviewItem: e.target.value
                         }
                     })}
                     type="text" 
                     name="reviewItem"
-                    value={data.reviewItem}
+                    value={review.reviewItem}
                     placeholder="Add item here"
                     />
                 </label><br/>
@@ -138,13 +151,14 @@ export default function EditReview() {
                 Category*
                 <br/>
                     <select id="selector"
-                    onChange={(e) => setData(prevData => {
+                    onChange={(e) => setReview(prevreview => {
                         return {
-                            ...prevData, 
+                            ...prevreview, 
                             category: e.target.value
                         }
                     })}
                     name="category"
+                    value={review.category}
                     > 
                         <option>Please Select</option> 
                         <option>Restaurants</option>
@@ -172,13 +186,13 @@ export default function EditReview() {
                     <textarea 
                     type="text" 
                     name="body"
-                    onChange={(e) => setData(prevData => {
+                    onChange={(e) => setReview(prevreview => {
                         return {
-                            ...prevData, 
+                            ...prevreview, 
                             body: e.target.value
                         }
                     })}
-                    value={data.body}
+                    value={review.body}
                     placeholder="Please write reiew here."
                     ></textarea>
                 </label><br/>
@@ -188,18 +202,18 @@ export default function EditReview() {
                     <input 
                     type="text" 
                     name="rating"
-                    onChange={(e) => setData(prevData => {
+                    onChange={(e) => setReview(prevreview => {
                         return {
-                            ...prevData, 
+                            ...prevreview, 
                             rating: e.target.value
                         }
                     })}
-                    value={data.rating}
+                    value={review.rating}
                     placeholder="Please rate between 0-5"
                     />
                 </label><br/>
             </form>
-            <button onClick={handleSubmit}>Publish</button>
+            <button onClick={handleSubmit}>Update</button>
         </div>
     )
 }
