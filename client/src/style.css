@@ -247,7 +247,9 @@ SECTION PAGES: Review Component
 
 .reviewCard{
     border-bottom:#018a71 1px solid;
-    text-align: center;
+    display: flex;
+    flex-direction:column;
+    align-items: center;
 }
 .reviewCard h3{
     font-family: 'Righteous', cursive;
