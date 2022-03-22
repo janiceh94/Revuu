@@ -13,6 +13,8 @@ export default function MakeReview() {
                     setReview(foundReview);
                 })
     };
+
+    const navigate=useNavigate();
   
     const handleEdit = () => {
         return navigate('edit')

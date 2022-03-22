@@ -267,7 +267,7 @@ SECTION PAGES: Review Component
 }
 #homebtn{
     border-bottom: #05dab3 1px solid;
-    padding: 0 150px;
+    padding: 0 150px 1rem 150px;
     align-items: center;
     text-align: center;
     margin: auto;
@@ -277,7 +277,12 @@ SECTION PAGES: Review Component
     text-align: center;
     text-decoration: #f6efef;
 }
+.reviewCard h3 {
+    font-size: 14pt;
+}
 
+/* !SECTION */
+/*
 SECTION PAGES: Show Review
 */
 
