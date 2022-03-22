@@ -45,7 +45,7 @@ export default function ShowReview() {
         return (
             <div className="showReview"> 
                 <div className="image">
-                    {checkImage()}
+                {checkImage()}
                 </div>
                 <h2>{review.title}</h2>
                 {reviewItem()}
