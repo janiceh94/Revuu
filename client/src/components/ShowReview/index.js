@@ -1,21 +1,13 @@
 import React from 'react';
 import {useNavigate} from 'react-router-dom';
 import { useEffect, useState } from "react";
-import * as reviewService from "../../api/review.service";
 import apiClient from '../../api/axios.config';
 
-export default function MakeReview() {
+export default function ShowReview() {
+    const navigate  = useNavigate();
+    let currentUserID = JSON.parse(`${localStorage.getItem("userID")}`);
     const [review, setReview] = useState({});
-    //const [reviewId, setReviewId] = useState("")
-    // const review = {};
-    // const reviewId = window.location.pathname.split("/")[2];
 
-    // setReviewId(window.location.pathname.split("/")[2])
-
-    // const getReviewIdFunc = async () => {
-    //     await setReviewId(window.location.pathname.split("/")[2]);
-    //     console.log("reviewIDFunc:", reviewId);
-    // }
 	const getReview = async () => {
 		await apiClient.get(`/api/review/${window.location.pathname.split("/")[2]}`).then((res)=>{
             console.log("reviewID:", window.location.pathname.split("/")[2]);
@@ -37,26 +29,56 @@ export default function MakeReview() {
         if(review.link !== "https://picsum.photos/500?grayscale"){
             return 
         } else {
-            return <h3>Review Item:<br/><>{review.reviewItem}</></h3>
+            return (<h4>{review.reviewItem}</h4>)
         }
     }
 
+    const handleEdit = () => {
+        return navigate('edit')
+    }
+
     useEffect(() => {
-       // getReviewIdFunc();
 		getReview();
 	}, []);
 
-    return(
-        <div> 
-            <h1>Show Review</h1>
-            <div id="image">
+    if(currentUserID === review.user){
+        return (
+            <div className="showReview"> 
+                <div className="image">
                 {checkImage()}
+                </div>
+                <h2>{review.title}</h2>
+                {reviewItem()}
+                <h4>Category:
+                <p>{review.category}</p>
+                </h4>
+                <h4>Description:
+                <p>{review.body}</p>
+                </h4>
+                <h4>Rating:
+                <p>{review.rating}</p>
+                </h4>
+                <button onClick={handleEdit}>Edit</button>
             </div>
-            <h2>{review.title}</h2>
-            {reviewItem()}
-            <h4>Category:<br/>{review.category}</h4>
-            <p>Description:<br/>{review.body}</p>
-            <h4>Rating:<br/>{review.rating}</h4>
-        </div>
-    )
+        )
+    } else {
+        return(
+            <div className="showReview"> 
+                <div className="image">
+                    {checkImage()}
+                </div>
+                <h2>{review.title}</h2>
+                {reviewItem()}
+                <h4>Category:
+                <p>{review.category}</p>
+                </h4>
+                <h4>Description:
+                <p>{review.body}</p>
+                </h4>
+                <h4>Rating:
+                <p>{review.rating}</p>
+                </h4>
+            </div>
+        )
+    }
 }
