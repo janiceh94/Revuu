@@ -1,7 +1,7 @@
 import apiClient from "../../../api/axios.config";
 import { useEffect, useState } from "react";
 function Review (props) {
-    const [user, setUser] = useState({});
+    /* const [user, setUser] = useState({});
 
     const getUser = async () => {
         console.log("props.data.user",props.data.user)
@@ -14,7 +14,7 @@ function Review (props) {
    useEffect(() => {
 		getUser();
         console.log(user);
-	}, []);
+	}, []); */
 
     return(
         // <div>
