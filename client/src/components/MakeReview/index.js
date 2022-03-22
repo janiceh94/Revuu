@@ -42,7 +42,6 @@ export default function MakeReview() {
         } else {
             await reviewService.create(data)
                 .then((createdReview) => {
-                    console.log(createdReview);
                     setData(prevData => {
                         return {
                             ...prevData, 
