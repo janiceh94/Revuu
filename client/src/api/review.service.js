@@ -6,6 +6,10 @@ const getAllReviews = () => {
     return apiClient.get(`${reviews}`);
 }
 
+const getUserIndex = (id) => {
+    return apiClient.get(`${reviews}/userindex/${id}`);
+}
+
 const get = (id) => {
     return apiClient.get(`${reviews}/${id}`);
 }
@@ -24,6 +28,7 @@ const destroy = (id) => {
 
 export {
     getAllReviews, 
+    getUserIndex,
     get, 
     create,
     update, 

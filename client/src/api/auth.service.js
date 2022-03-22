@@ -32,11 +32,13 @@ const currentUser = () => {
 }
 
 const getProfile = () => {
-    return apiClient.get(`${users}/profile`)
+    //console.log("auth.service currentUser: ", JSON.parse(localStorage.getItem("userID")));
+    return apiClient.get(`${users}/profile/${JSON.parse(localStorage.getItem("userID"))}`);
 }
 
 const logout = () => {
-    localStorage.removeItem("user")
+    localStorage.removeItem("user");
+    localStorage.removeItem("userID");
 }
 
 export {
