@@ -246,12 +246,20 @@ SECTION PAGES: Review Component
 */
 
 .reviewCard{
-    border-bottom:#018a71 1px solid;
     display: flex;
     flex-direction:column;
     align-items: center;
+}
+#homebtn{
+    border-bottom: #05dab3 1px solid;
+    padding: 0 150px;
+    align-items: center;
+    text-align: center;
+    margin: auto;
+    display:flex;
 }
 .reviewCard h3, h5{
     text-align: center;
     text-decoration: #f6efef;
 }
+

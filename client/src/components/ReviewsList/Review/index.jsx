@@ -23,6 +23,7 @@ function Review (props) {
             <h5>Review Item: <br/>{props.data.reviewItem}</h5>
             <h5>Category: <br/>{props.data.category}</h5>
         </div>
+
         // <div className='reviewCard'>
         //     <h3>Title</h3>
         //     <h5>ReviewImage</h5>

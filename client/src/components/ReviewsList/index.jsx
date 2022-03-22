@@ -33,8 +33,9 @@ function ReviewsList(){
 
 			{reviews.map((review, i)=>{
 				return(
-					<div onClick = {() => reviewId(review._id)}>
+					<div /* onClick = {() => reviewId(review._id)} */>
 					<Review key={i} data={review}/>
+					<button id='homebtn' onClick = {() => reviewId(review._id)}>View Review</button>
 					</div>
 				);
 			})}
