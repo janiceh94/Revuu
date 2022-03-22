@@ -15,7 +15,7 @@ export default function ShowReview() {
 	}
 
     const checkImage = () => {
-        if(review.link !== "https://picsum.photos/500?grayscale"){
+        if(!review.linkIsImage){
             return <a id="reviewItem-link" href={review.link} target="_blank" rel="noreferrer">{review.reviewItem}</a>
         } else {
             return <img src={review.link} alt="review-item"/>
@@ -23,7 +23,7 @@ export default function ShowReview() {
     }
 
     const reviewItem = () => {
-        if(review.link !== "https://picsum.photos/500?grayscale"){
+        if(!review.linkIsImage){
             return 
         } else {
             return (<h4>{review.reviewItem}</h4>)
@@ -42,7 +42,7 @@ export default function ShowReview() {
         return (
             <div className="showReview"> 
                 <div className="image">
-                {checkImage()}
+                    {checkImage()}
                 </div>
                 <h2>{review.title}</h2>
                 {reviewItem()}

@@ -8,8 +8,8 @@ import * as reviewService from "../../api/review.service";
 export default function EditReview() {
     const navigate = useNavigate();
     let currentUserID = JSON.parse(`${localStorage.getItem("userID")}`);
-
     let [review, setReview] = useState({});
+
 
     const getReview = async () => {
 		await apiClient.get(`/api/review/${window.location.pathname.split("/")[2]}`).then((res)=>{
@@ -55,51 +55,85 @@ export default function EditReview() {
         
     };
 
+    const handleEditImage = (e) => {
+        e.preventDefault(); 
+        if(document.querySelector("#imageID").style.display === "none"){
+            document.querySelector("#imageID").style.display = "flex";
+
+            if(review.linkIsImage){
+                document.querySelector('#reviewItem-link').style.display = 'none';
+                document.querySelector('#image').style.display = 'flex';
+            } else {
+                document.querySelector('#slider').checked = true;;
+                document.querySelector('#image').style.display = 'none';
+                document.querySelector('#reviewItem-link').style.display = 'block';
+            }            
+        } else {
+            document.querySelector("#imageID").style.display = "none"
+        }
+    }
+
     useEffect(() => {
         getReview();
     }, []);
-    
+
     return(
             <div className="showReview"> 
-                <div className="image">
+                <div className="image" id="imageID">
                     <img  id="image" src={review.link} alt="item_image"/>
                     <a id="reviewItem-link" href={review.link} target="_blank" rel="noreferrer">{review.reviewItem}</a>
-                </div>
-                <form id="editForm">
-                <label>
-                    <br/>
+                    <form>
+                        <label>
                         <label>Image URL </label>
-                        <label className="switch">
-                        <input 
-                            onChange={(e) => {
-                                if(e.target.checked){
-                                    document.querySelector('#image').style.display = 'none';
-                                    document.querySelector('#reviewItem-link').style.display = 'block';
-                                } else {
-                                    document.querySelector('#reviewItem-link').style.display = 'none';
-                                    document.querySelector('#image').style.display = 'block';
-                                };
-                            }} 
-                            id="slider" 
-                            type="checkbox"/>
-                        <span className="slider round"></span>
-                        </label>
-                        <label> Web Link</label>
-                        <br/>
-                        <input 
-                        onChange={(e) => {
-                                setReview(prevreview => {
-                                    return {
-                                        ...prevreview, 
-                                        link: e.target.value
-                                    }
-                                })}}
-                        value={review.link}
-                        type="text" 
-                        name="link"
-                        id="link"
-                        /> 
-                    </label><br/><br/>
+                            <label className="switch">
+                            <input 
+                                onChange={(e) => {
+                                    if(e.target.checked){
+                                        document.querySelector('#image').style.display = 'none';
+                                        document.querySelector('#reviewItem-link').style.display = 'block';
+                                        setReview(prevReview => {
+                                            return {
+                                                ...prevReview, 
+                                                linkIsImage: false
+                                            }
+                                        })
+                                    } else {
+                                        document.querySelector('#reviewItem-link').style.display = 'none';
+                                        document.querySelector('#image').style.display = 'block';
+                                        setReview(prevReview => {
+                                            return {
+                                                ...prevReview, 
+                                                linkIsImage: true
+                                            }
+                                        })
+                                    };
+                                }} 
+                                id="slider" 
+                                type="checkbox"
+                                />
+                            <span className="slider round"></span>
+                            </label>
+                            <label> Web Link</label>
+                            <br/>
+                            <input 
+                                onChange={(e) => {
+                                        setReview(prevReview => {
+                                            return {
+                                                ...prevReview, 
+                                                link: e.target.value
+                                            }
+                                        })}}
+                                value={review.link}
+                                type="text" 
+                                name="link"
+                                id="link"
+                                /> 
+                            </label>
+                        </form>
+                </div>
+                <button onClick={handleEditImage}>Edit Image</button> 
+                <form id="editForm">                        
+                        <br/>                    
                     <label> 
                     Title*
                     <br/>
