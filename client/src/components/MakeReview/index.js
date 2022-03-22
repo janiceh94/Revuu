@@ -10,7 +10,7 @@ export default function MakeReview() {
     let userID = JSON.parse(`${localStorage.getItem("userID")}`);
 
     let [data, setData] = useState({
-        link: "https://picsum.photos/500?grayscale",
+        link: "",
         reviewItem: "",
         title: "",
         category: "",
@@ -46,7 +46,7 @@ export default function MakeReview() {
                     setData(prevData => {
                         return {
                             ...prevData, 
-                            link: "https://picsum.photos/500?grayscale",
+                            link: "",
                             reviewItem: "",
                             title: "",
                             category: "",
@@ -60,21 +60,6 @@ export default function MakeReview() {
         };
     };
 
-    const changeLink = () => {
-        setData(prevData => {
-            if(!prevData.link.includes("jpg") && !prevData.link.includes("png")){
-                return {
-                    ...prevData, 
-                    link: "https://picsum.photos/500?grayscale"
-                }
-            } else {
-                return {
-                    ...prevData, 
-                    link: prevData.link
-                }
-            }
-        })
-    }
 
     useEffect(() => {
         getImageUrl();
@@ -99,7 +84,6 @@ export default function MakeReview() {
                             } else {
                                 document.querySelector('#reviewItem-link').style.display = 'none';
                                 document.querySelector('#image').style.display = 'block';
-                                changeLink();
                             };
                         }} 
                         id="slider" 

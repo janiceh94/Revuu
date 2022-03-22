@@ -51,22 +51,6 @@ export default function EditReview() {
         };
     };
 
-    const changeLink = () => {
-        setReview(prevData => {
-            if(!prevData.link.includes("jpg") && !prevData.link.includes("png")){
-                return {
-                    ...prevData, 
-                    link: "https://picsum.photos/500?grayscale"
-                }
-            } else {
-                return {
-                    ...prevData, 
-                    link: prevData.link
-                }
-            }
-        })
-    }
-
     useEffect(() => {
         getReview();
     }, []);
@@ -90,7 +74,6 @@ export default function EditReview() {
                                 } else {
                                     document.querySelector('#reviewItem-link').style.display = 'none';
                                     document.querySelector('#image').style.display = 'block';
-                                    changeLink();
                                 };
                             }} 
                             id="slider" 
