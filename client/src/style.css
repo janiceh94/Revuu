@@ -89,6 +89,9 @@ SECTION Mobile page details. Please make note of any changes
     img {
         max-height: 100vh;
     }
+    button{
+        font-size: 14pt;
+    }
 
 
 }
