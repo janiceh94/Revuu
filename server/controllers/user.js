@@ -28,6 +28,22 @@ const show = (req, res) => {
         })
     })
 }
+
+const getProfile = (req, res) => {
+    db.User.findById(req.params.id, (err, foundUser) => {
+        if(err){
+            return res.status(400).json({
+                message: 'User not found', 
+                error: err,
+            })
+        }
+        return res.status(200).json({
+            message: 'User found',
+            data: foundUser,
+        })
+    })
+}
+
 //ANCHOR NO CREATE NECESSARY. CREATE IS HANDLED IN AUTH
 
 const update = (req, res) => {
@@ -69,4 +85,5 @@ module.exports = {
     show,
     update,
     destroy,
+    getProfile,
 }

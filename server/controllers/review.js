@@ -15,6 +15,21 @@ const index = (req, res) => {
     })
 }
 
+const userIndex = (req,res) => {
+    db.Review.find({user:`${req.params.id}`}, (err, foundReviews)=>{
+        if(err){
+            return res.status(400).json({
+                message: 'Could not retrieve userIndex', 
+                error: err,
+            })
+        }
+        return res.status(200).json({
+            message: 'userIndex found',
+            data: foundReviews,
+        })
+    })
+}
+
 const show = (req, res) => {
     db.Review.findById(req.params.id, (err, foundReview) => {
         if(err){
@@ -101,6 +116,7 @@ const destroy = (req, res) => {
 
 module.exports = {
     index, 
+    userIndex,
     show,
     create,
     update, 
