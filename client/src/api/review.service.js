@@ -6,6 +6,8 @@ const getAllReviews = () => {
     return apiClient.get(`${reviews}`);
 }
 
+
+
 const get = (id) => {
     return apiClient.get(`${reviews}/${id}`);
 }
