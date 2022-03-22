@@ -1,5 +1,9 @@
 # Revuu
 
+## Concept
+
+Revuu is an application that allows users to post a review on anything they like and give them a rating between 0 - 5
+
 ## User Stories
 
 As a user I want to connect with friends - follow </br>
@@ -23,6 +27,9 @@ As a user I want to have this easily accessible on my mobile device </br>
 - MongoDB
 - JavaScript
 - React
+
+## App:
+http://revuu.herokuapp.com/api
 
 ## Additional Information:
 Developed by Audrey Bledsoe, Evan Keith, Janice Kwak, and Samuel Mark

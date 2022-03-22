@@ -1,13 +1,11 @@
 import React from 'react';
 import {useNavigate} from 'react-router-dom';
 import { useEffect, useState } from "react";
-import apiClient from '../../api/axios.config';
+import * as reviewService from "../../api/review.service";
 
-export default function ShowReview() {
-    const navigate  = useNavigate();
-    let currentUserID = JSON.parse(`${localStorage.getItem("userID")}`);
-    const [review, setReview] = useState({});
-
+export default function MakeReview() {
+    const [ review, setReview ] = useState({});
+    const reviewId = window.location.pathname.split("/")[2];
 	const getReview = async () => {
 		await apiClient.get(`/api/review/${window.location.pathname.split("/")[2]}`).then((res)=>{
 			setReview(res.data.data);
@@ -30,12 +28,15 @@ export default function ShowReview() {
         }
     }
 
+    const navigate=useNavigate();
+  
     const handleEdit = () => {
         return navigate('edit')
     }
 
     useEffect(() => {
-		getReview();
+
+		getReviewData();
 	}, []);
 
     if(currentUserID === review.user){
@@ -57,25 +58,12 @@ export default function ShowReview() {
                 </h4>
                 <button onClick={handleEdit}>Edit</button>
             </div>
-        )
-    } else {
-        return(
-            <div className="showReview"> 
-                <div className="image">
-                    {checkImage()}
-                </div>
-                <h2>{review.title}</h2>
-                {reviewItem()}
-                <h4>Category:
-                <p>{review.category}</p>
-                </h4>
-                <h4>Description:
-                <p>{review.body}</p>
-                </h4>
-                <h4>Rating:
-                <p>{review.rating}</p>
-                </h4>
-            </div>
-        )
-    }
+            <h2>{review.title}</h2>
+            {reviewItem()}
+            <h4>Category:<br/>{review.category}</h4>
+            <p>Description:<br/>{review.body}</p>
+            <h4>Rating:<br/>{review.rating}</h4> */}
+        </div>
+    )
+
 }

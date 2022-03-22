@@ -257,6 +257,32 @@ input:checked + .slider:before {
 
 /* !SECTION */
 /*
+SECTION PAGES: Review Component
+*/
+
+.reviewCard{
+    display: flex;
+    flex-direction:column;
+    align-items: center;
+}
+#homebtn{
+    border-bottom: #05dab3 1px solid;
+    padding: 0 150px 1rem 150px;
+    align-items: center;
+    text-align: center;
+    margin: auto;
+    display:flex;
+}
+.reviewCard h3, h5{
+    text-align: center;
+    text-decoration: #f6efef;
+}
+.reviewCard h3 {
+    font-size: 14pt;
+}
+
+/* !SECTION */
+/*
 SECTION PAGES: Show Review
 */
 
@@ -299,3 +325,4 @@ SECTION PAGES: Show Review
     align-items: center;
     flex-direction: column;
 }
+
