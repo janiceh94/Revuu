@@ -39,7 +39,8 @@ export default function UserProfile(){
                         setUsr(prevData => {
                             return {
                                 ...prevData, 
-                                userIcon: response.request.responseURL
+                                userIcon: response.request.responseURL, 
+                                bio: "Music maven. Pop culture fanatic. Entrepreneur. Typical introvert. Travel fan. Highly opionated social media influencer."
                             }
                         })
                         return usr.Icon
