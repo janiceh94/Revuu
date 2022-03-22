@@ -10,10 +10,9 @@ export default function Login({checkUserActive}) {
     async function handleSubmit(e) {
         e.preventDefault();
         await authService.login(email, password).then(() => {
-            {checkUserActive()}
+            checkUserActive()
             setEmail("");
             setPassword("");
-            console.log('handle submit');
             navigate('/home');
         })
     }
@@ -43,7 +42,6 @@ export default function Login({checkUserActive}) {
 						Login
 					</button>
                 </div>
-                {/* <input type="submit" onSubmit={handleSubmit} /> */}
             </form>
         </div>
     )

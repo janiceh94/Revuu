@@ -11,6 +11,7 @@ export default function MakeReview() {
 
     let [data, setData] = useState({
         link: "",
+        linkIsImage: true,
         reviewItem: "",
         title: "",
         category: "",
@@ -42,7 +43,6 @@ export default function MakeReview() {
         } else {
             await reviewService.create(data)
                 .then((createdReview) => {
-                    console.log(createdReview);
                     setData(prevData => {
                         return {
                             ...prevData, 
@@ -65,6 +65,14 @@ export default function MakeReview() {
         getImageUrl();
     }, []);
 
+    useEffect(() => {
+        if(data.linkIsImage){
+            document.querySelector('#reviewItem-link').style.display = 'none';
+        } else {
+            document.querySelector('#reviewItem-link').style.display = 'block';
+        }
+    }, [data]);
+
     return(
         <div className="showReview"> 
             <div className="image">
@@ -81,9 +89,21 @@ export default function MakeReview() {
                             if(e.target.checked){
                                 document.querySelector('#image').style.display = 'none';
                                 document.querySelector('#reviewItem-link').style.display = 'block';
+                                setData(prevData => {
+                                    return {
+                                        ...prevData, 
+                                        linkIsImage: false
+                                    }
+                                })
                             } else {
                                 document.querySelector('#reviewItem-link').style.display = 'none';
                                 document.querySelector('#image').style.display = 'block';
+                                setData(prevData => {
+                                    return {
+                                        ...prevData, 
+                                        linkIsImage: true
+                                    }
+                                })
                             };
                         }} 
                         id="slider" 

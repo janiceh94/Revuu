@@ -166,6 +166,10 @@ SECTION PAGES: LANDING
     align-items: center;
 }
 
+#registration {
+    display: none;
+}
+
 /* !SECTION */
 /*
 SECTION PAGES: HOME
@@ -244,12 +248,8 @@ input:checked + .slider:before {
     border-radius: 50%;
 }
 
-#image {
-    display: block;
-}
-
 #reviewItem-link {
-    display: none;
+    display: block;
     background-color: var(--secondary-gray);
     text-align: center;
     padding: 5vh;
@@ -317,3 +317,12 @@ SECTION PAGES: Show Review
 #editForm select {
     width: 100%;
 }
+
+#imageID {
+    display: none;
+    text-align: center;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+}
+

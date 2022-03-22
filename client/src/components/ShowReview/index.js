@@ -6,13 +6,27 @@ import * as reviewService from "../../api/review.service";
 export default function MakeReview() {
     const [ review, setReview ] = useState({});
     const reviewId = window.location.pathname.split("/")[2];
+	const getReview = async () => {
+		await apiClient.get(`/api/review/${window.location.pathname.split("/")[2]}`).then((res)=>{
+			setReview(res.data.data);
+		})
+	}
 
-    const getReviewData = async () => {
-        await reviewService.get(reviewId)
-                .then((err, foundReview) => {
-                    setReview(foundReview);
-                })
-    };
+    const checkImage = () => {
+        if(!review.linkIsImage){
+            return <a id="reviewItem-link" href={review.link} target="_blank" rel="noreferrer">{review.reviewItem}</a>
+        } else {
+            return <img src={review.link} alt="review-item"/>
+        }
+    }
+
+    const reviewItem = () => {
+        if(!review.linkIsImage){
+            return 
+        } else {
+            return (<h4>{review.reviewItem}</h4>)
+        }
+    }
 
     const navigate=useNavigate();
   
@@ -25,11 +39,11 @@ export default function MakeReview() {
 		getReviewData();
 	}, []);
 
-    return(
-        <div> 
-            {/* <h1>Show Review</h1>
-            <div id="image">
-                {checkImage()}
+    if(currentUserID === review.user){
+        return (
+            <div className="showReview"> 
+                <div className="image">
+                    {checkImage()}
                 </div>
                 <h2>{review.title}</h2>
                 {reviewItem()}
