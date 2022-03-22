@@ -4,7 +4,8 @@ import { useNavigate } from 'react-router-dom';
 import * as reviewService from "../../api/review.service"
 import * as authService from "../../api/auth.service"
 import apiClient from '../../api/axios.config';
-import Review from "../../components/ReviewsList/Review"
+import Review from "../../components/ReviewsList/Review"; 
+import axios from 'axios';
 
 export default function UserProfile(){
 
@@ -33,9 +34,28 @@ export default function UserProfile(){
         navigate(`/review/${id}`);
     }
 
+    const setUserIcon = async() => {
+        await axios.get("https://picsum.photos/500")
+                .then((response) => {
+                    if(!usr.userIcon || usr.userIcon === ""){
+                        setUsr(prevData => {
+                            return {
+                                ...prevData, 
+                                userIcon: response.request.responseURL
+                            }
+                        })
+                        return usr.Icon
+                    } else {
+                        return usr.Icon
+                    }
+                });
+        
+    }
+
     useEffect(() => {
         fetchUser()
         fetchReviews()
+        setUserIcon()
 	}, []);
 
     useEffect(() => {
