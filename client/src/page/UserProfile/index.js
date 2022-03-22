@@ -44,11 +44,13 @@ export default function UserProfile(){
 	}, [usr, reviews]);
 
     return(
-        <div>
-            <h3>{usr.firstName}</h3>
-            <img src={usr.userIcon}/>
-            <p>{usr.email}</p>
-            <p>{usr.bio}</p>
+        <div id="userPage">
+            <div id="userProfile">
+                <h3>{usr.firstName}</h3>
+                <img src={usr.userIcon}/>
+                <p>{usr.email}</p>
+                <p id="bio">{usr.bio}</p>
+            </div>
             {reviews.map((review, i)=>{
                 return(
                     <div>
