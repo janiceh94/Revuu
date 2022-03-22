@@ -2,7 +2,6 @@ import {BrowserRouter, Route, Routes} from 'react-router-dom';
 import Header from "../Header"
 import FootStick from "../FooterSticky";
 import FootCR from "../FooterCR";
-import FakePage from "../FakePage";
 import Home from '../../page/Home';
 import UserProfile from '../../page/UserProfile'; 
 import Landing from '../../page/Landing'; 
@@ -76,7 +75,6 @@ function App() {
             <Route path="/" element={<Landing checkUserActive={() => dispatch({type: "setIsLoggedIn", payload: true})}/>}/>
             <Route path='home' element = {<Landing checkUserActive={() => dispatch({type: "setIsLoggedIn", payload: true})}/>}/>
             <Route path='profile' element = {<Landing checkUserActive={() => dispatch({type: "setIsLoggedIn", payload: true})}/>}/>
-            <Route path='fake-page' element = {<Landing checkUserActive={() => dispatch({type: "setIsLoggedIn", payload: true})}/>}/> 
             <Route path="review" element={<Landing checkUserActive={() => dispatch({type: "setIsLoggedIn", payload: true})}/>}/>
             <Route path="review/:id" element={<Landing checkUserActive={() => dispatch({type: "setIsLoggedIn", payload: true})}/>} />
             <Route path="review/:id/edit" element={<Landing checkUserActive={() => dispatch({type: "setIsLoggedIn", payload: true})}/>} />

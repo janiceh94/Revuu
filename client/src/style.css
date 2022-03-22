@@ -166,6 +166,10 @@ SECTION PAGES: LANDING
     align-items: center;
 }
 
+#registration {
+    display: none;
+}
+
 /* !SECTION */
 /*
 SECTION PAGES: HOME
