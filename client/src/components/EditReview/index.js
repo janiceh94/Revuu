@@ -8,12 +8,8 @@ import * as reviewService from "../../api/review.service";
 export default function EditReview() {
     const navigate = useNavigate();
     let currentUserID = JSON.parse(`${localStorage.getItem("userID")}`);
-    
-    console.log("currentUserId: ", currentUserID); 
-    
-    let [review, setReview] = useState({});
 
-    console.log("review_user: ", review.user);
+    let [review, setReview] = useState({});
 
     const getReview = async () => {
 		await apiClient.get(`/api/review/${window.location.pathname.split("/")[2]}`).then((res)=>{
