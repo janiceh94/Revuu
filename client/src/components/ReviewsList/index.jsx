@@ -27,9 +27,9 @@ function ReviewsList(){
 
 	return(
 		<div>
+			{/* <Review/>
 			<Review/>
-			<Review/>
-			<Review/>
+			<Review/> */}
 
 			{reviews.map((review, i)=>{
 				return(

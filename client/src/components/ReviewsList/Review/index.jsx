@@ -17,29 +17,24 @@ function Review (props) {
 	}, []); */
 
     return(
-        // <div>
-        //     <h3>{props.data.title}</h3>
-        //     <h5>{props.data.reviewItem}</h5>
-        //     <h5>{props.data.category}</h5>
-        //     <h5>Name: Username</h5>
-        //     <p>{props.data.body}</p>
-        //     <div>
-        //         star rating goes here!
-        //     </div>
-        //     <p>{props.data.likes}</p>
-        // </div>
         <div className='reviewCard'>
-            <h3>Title</h3>
-            <h5>ReviewImage</h5>
-            <h5>ReviewItem</h5>
-            <h5>DataCategory</h5>
-            <h5>Name: Username</h5>
-            <p>DataBody</p>
-            <div>
-                5
-            </div>
-            <p>DataLikes</p>
+            <h3>{props.data.title}</h3>
+            <img src={props.data.link} alt='item-image'/>
+            <h5>Review Item: <br/>{props.data.reviewItem}</h5>
+            <h5>Category: <br/>{props.data.category}</h5>
         </div>
+        // <div className='reviewCard'>
+        //     <h3>Title</h3>
+        //     <h5>ReviewImage</h5>
+        //     <h5>ReviewItem</h5>
+        //     <h5>DataCategory</h5>
+        //     <h5>Name: Username</h5>
+        //     <p>DataBody</p>
+        //     <div>
+        //         5
+        //     </div>
+        //     <p>DataLikes</p>
+        // </div>
     );
 }
 

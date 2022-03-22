@@ -251,7 +251,7 @@ SECTION PAGES: Review Component
     flex-direction:column;
     align-items: center;
 }
-.reviewCard h3{
-    font-family: 'Righteous', cursive;
-    text-decoration: underline;
+.reviewCard h3, h5{
+    text-align: center;
+    text-decoration: #f6efef;
 }
