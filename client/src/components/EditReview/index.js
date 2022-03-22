@@ -127,6 +127,7 @@ export default function EditReview() {
                         name="title"
                         value={review.title}
                         placeholder="Add title here."
+                        maxLength="60"
                         />
                     </label><br/><br/>
                     <label> 
@@ -143,6 +144,7 @@ export default function EditReview() {
                         name="reviewItem"
                         value={review.reviewItem}
                         placeholder="Add item here"
+                        maxLength="60"
                         />
                     </label><br/><br/>
                     <label htmlFor="selector"> 
@@ -161,7 +163,8 @@ export default function EditReview() {
                             <option>Please Select</option> 
                             <option>Restaurants</option>
                             <option>Tech Products</option>
-                            <option>Cooking Gagets</option>
+                            <option>Cooking Gadgets</option>
+                            <option>Food/Drink</option>
                             <option>Books</option>
                             <option>Destinations/Landmarks</option>
                             <option>Clothes/Accessories</option>
@@ -175,7 +178,7 @@ export default function EditReview() {
                             <option>Medical/Veterinarian services</option>
                             <option>Plants</option>
                             <option>People</option>
-                            <option>Misc</option>
+                            <option>Other</option>
                         </select>
                     </label><br/><br/>
                     <label> 

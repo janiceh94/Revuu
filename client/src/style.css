@@ -237,6 +237,9 @@ input:checked + .slider:before {
 
 #reviewItem-link {
     display: none;
+    background-color: var(--secondary-gray);
+    text-align: center;
+    padding: 5vh;
 }
 
 /* !SECTION */
@@ -254,6 +257,8 @@ SECTION PAGES: Show Review
 .showReview .image {
     display: flex;
     justify-content: center;
+    width: 100%;
+    flex-wrap: wrap;
 }
 
 .editButtons {

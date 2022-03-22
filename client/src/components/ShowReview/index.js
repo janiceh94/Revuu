@@ -19,7 +19,7 @@ export default function ShowReview() {
 
     const checkImage = () => {
         if(review.link !== "https://picsum.photos/500?grayscale"){
-            return <a href={review.link} target="_blank" rel="noreferrer">{review.reviewItem}</a>
+            return <a id="reviewItem-link" href={review.link} target="_blank" rel="noreferrer">{review.reviewItem}</a>
         } else {
             return <img src={review.link} alt="review-item"/>
         }

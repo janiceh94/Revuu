@@ -63,10 +63,12 @@ export default function MakeReview() {
         })}
 
     return(
-        <div> 
-            <img id="image" src={data.link} alt="item_image"/>
-            <a id="reviewItem-link" href={data.link} target="_blank" rel="noreferrer">{data.reviewItem}</a>
-            <form>
+        <div className="showReview"> 
+            <div className="image">
+                <img id="image" src={data.link} alt="item_image"/>
+                <a id="reviewItem-link" href={data.link} target="_blank" rel="noreferrer">{data.reviewItem}</a>
+            </div>
+            <form id="editForm">
             <label>
                 <br/>
                     <label>Image URL </label>
@@ -116,6 +118,7 @@ export default function MakeReview() {
                     name="title"
                     value={data.title}
                     placeholder="Add title here."
+                    maxLength="60"
                     />
                 </label><br/>
                 <label> 
@@ -132,6 +135,7 @@ export default function MakeReview() {
                     name="reviewItem"
                     value={data.reviewItem}
                     placeholder="Add item here"
+                    maxLength="60"
                     />
                 </label><br/>
                 <label htmlFor="selector"> 
@@ -149,7 +153,8 @@ export default function MakeReview() {
                         <option>Please Select</option> 
                         <option>Restaurants</option>
                         <option>Tech Products</option>
-                        <option>Cooking Gagets</option>
+                        <option>Cooking Gadgets</option>
+                        <option>Food/Drink</option>
                         <option>Books</option>
                         <option>Destinations/Landmarks</option>
                         <option>Clothes/Accessories</option>
@@ -163,7 +168,7 @@ export default function MakeReview() {
                         <option>Medical/Veterinarian services</option>
                         <option>Plants</option>
                         <option>People</option>
-                        <option>Misc</option>
+                        <option>Other</option>
                     </select>
                 </label><br/>
                 <label> 
@@ -197,7 +202,7 @@ export default function MakeReview() {
                     value={data.rating}
                     placeholder="Please rate between 0-5"
                     />
-                </label><br/>
+                </label><br/><br/>
             </form>
             <button onClick={handleSubmit}>Publish</button>
         </div>
