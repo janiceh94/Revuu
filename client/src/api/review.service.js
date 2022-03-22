@@ -6,7 +6,7 @@ const getAllReviews = () => {
     return apiClient.get(`${reviews}`);
 }
 
-const getUserIndex = () => {
+const getUserIndex = (id) => {
     return apiClient.get(`${reviews}/userindex/${id}`);
 }
 

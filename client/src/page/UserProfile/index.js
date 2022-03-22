@@ -1,6 +1,7 @@
 import React from 'react';
 import { useEffect, useState } from "react";
 import { useNavigate } from 'react-router-dom';
+import * as reviewService from "../../api/review.service"
 import * as authService from "../../api/auth.service"
 import apiClient from '../../api/axios.config';
 import Review from "../../components/ReviewsList/Review"
@@ -22,7 +23,7 @@ export default function UserProfile(){
 	};
 
     const fetchReviews = async () => {
-		await apiClient.get(`/api/review`)
+		await reviewService.getUserIndex(JSON.parse(localStorage.getItem("userID")))
 		.then((res) => {
 			setReviews(res.data.data.reverse());
 		});
