@@ -29,7 +29,7 @@ As a user I want to have this easily accessible on my mobile device </br>
 - React
 
 ## App:
-http://revuu.herokuapp.com/api
+http://revuu.herokuapp.com/
 
 ## Additional Information:
 Developed by Audrey Bledsoe, Evan Keith, Janice Kwak, and Samuel Mark
