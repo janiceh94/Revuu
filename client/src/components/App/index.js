@@ -50,7 +50,6 @@ function App() {
   useEffect(() => {
       fetchReviews();
       checkLogin();
-      //window.location.reload(false);
   }, []);
 
   if (isLoggedIn) {

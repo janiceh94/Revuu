@@ -20,31 +20,39 @@ export default function EditReview() {
 
     const handleSubmit = async(e) => {
         e.preventDefault();
-        if(Object.values(review).includes("") || Object.values(review).includes(undefined)){
-            alert("Please fill out all fields");
-        }else if (review.rating > 5 || review.rating < 0){
-            alert("Please rate the noun from 0-5.");
-        } else if (review.category === "Please Select") {
-            alert("Please select a category.");
+        if(currentUserID === review.user){
+            if(Object.values(review).includes("") || Object.values(review).includes(undefined)){
+                alert("Please fill out all fields");
+            }else if (review.rating > 5 || review.rating < 0){
+                alert("Please rate the noun from 0-5.");
+            } else if (review.category === "Please Select") {
+                alert("Please select a category.");
+            } else {
+                await reviewService.update(review._id, review)
+                    .then((updatedReview) => {
+                        navigate(`/review/${review._id}`);
+                    })
+            };
         } else {
-            await reviewService.update(review._id, review)
-                .then((updatedReview) => {
-                    //console.log(updatedReview);
-                    navigate(`/review/${review._id}`);
-                })
-        };
+            alert("You can only edit reviews that you've created.");
+        }
+        
     };
 
     const handleDelete = async(e) => {
         e.preventDefault();
-
-        if(window.confirm("Are you sure you want to delete this review?") === true){
-            await reviewService.destroy(review._id)
-                    .then((err, deletedReview) => {
-                        alert("Review successfully deleted!");
-                        navigate("/home");
-                    })
-        };
+        if(currentUserID === review.user){
+            if(window.confirm("Are you sure you want to delete this review?") === true){
+                await reviewService.destroy(review._id)
+                        .then((err, deletedReview) => {
+                            alert("Review successfully deleted!");
+                            navigate("/home");
+                        })
+            };
+        } else {
+            alert("You can only edit reviews that you've created.");
+        }
+        
     };
 
     useEffect(() => {
