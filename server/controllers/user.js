@@ -15,6 +15,7 @@ const index = (req, res) => {
     })
 }
 const show = (req, res) => {
+    console.log(req.params)
     db.User.findById(req.params.id, (err, foundUser) => {
         if(err){
             return res.status(400).json({

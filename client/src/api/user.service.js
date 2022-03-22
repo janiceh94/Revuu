@@ -2,8 +2,9 @@ import apiClient from './axios.config';
 
 const user = 'api/user';
 
-const get = (data) => {
-    return apiClient.get(`${user}/profile`, data);
+const get = (id) => {
+    console.log(id)
+    return apiClient.get(`${user}/${id}`);
 }
 
 const update = (id, data) => {

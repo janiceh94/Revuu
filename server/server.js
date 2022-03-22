@@ -2,6 +2,7 @@ const path = require("path")
 require("dotenv").config({path: "../.env"})
 /* ==== External Modules ==== */
 const express = require("express");
+const cors = require('cors')
 /* ==== Internal Modules ==== */
 
 /* ==== Instanced Modules  ==== */
@@ -14,7 +15,7 @@ const config = require("@revuu/config");
 app.use(express.static(path.join("build")))
 app.use(express.urlencoded({extended: true}))
 app.use(express.json())
-
+app.use(cors())
 /* ====  Routes & Controllers  ==== */
 app.use("/api", routes);
 

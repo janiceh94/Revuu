@@ -4,7 +4,7 @@ module.exports = async(req, res, next) => {
     try {
         //grab that token!
         const bearerHeader = req.headers.authorization;
-
+        console.log(bearerHeader)
         //if there isnt a token
         if(typeof bearerHeader === "undefined"){
             return res.sendStatus(403)
