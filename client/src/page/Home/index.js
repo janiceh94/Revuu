@@ -1,11 +1,12 @@
 import apiClient from "../../api/axios.config";
 import { useEffect, useState } from "react";
-import * as reviewService from '../../api/review.service';
 import {useNavigate} from 'react-router-dom';
+import Reviews from '../../components/ReviewsList';
+
 
 
 export default function Home() {
-	const [reviews, setReviews] = useState([]);
+	/* const [reviews, setReviews] = useState([]);
 
 	const navigate = useNavigate();
 
@@ -16,20 +17,26 @@ export default function Home() {
 		});
 	};
 
+	const reviewId = async (id) => {
+		console.log('reviewId:')
+		navigate(`/review/${id}`);
+	}
+
 	useEffect(() => {
 		fetchReviews();
-	}, []);
+	}, []); */
 
 	return (
 		<div>
-			<h1>Home</h1>
+			{/* <h1>Home</h1>
 			{reviews.map((review, i) => {
 				return <h3 key={i}>{review.reviewItem}
 				<div>
-				<button onClick = {() => (console.log(review._id))}>View Review</button>
+				<button onClick = {() => reviewId(review._id)}>View Review</button>
 				</div>
 				</h3>;
-			})}
+			})} */}
+			<Reviews />
 		</div>
 	);
 }

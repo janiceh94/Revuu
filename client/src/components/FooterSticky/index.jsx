@@ -14,6 +14,9 @@ function FooterSticky({isLoggedIn}) {
           <button onClick={
               () => navigate('/profile')
           }>Profile</button>
+          <button onClick={
+            () => navigate('/review/6238cfb38206848f4abe18e0')
+          }>ReviewTest</button>
         </div>
       );
     }
@@ -30,6 +33,9 @@ function FooterSticky({isLoggedIn}) {
         <button onClick={
             () => navigate('/profile')
         }>Profile</button>
+        <button onClick={
+            () => navigate('/review/6238cfb38206848f4abe18e0')
+        }>ReviewTest</button>
       </div>
     )
   }

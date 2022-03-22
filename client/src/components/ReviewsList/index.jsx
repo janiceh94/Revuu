@@ -1,29 +1,38 @@
 import apiClient from "../../api/axios.config";
 import { useEffect, useState } from "react";
 import Review from "./Review"
+import {useNavigate} from 'react-router-dom';
  
 function ReviewsList(){
 	
 	const [reviews, setReviews] = useState([]);
 
-	const getReviews = async (e) => {
-		e.preventDefault();
-		await apiClient.get('/api/review').then((res)=>{
-			// console.log (res.data.data);
-			setReviews(res.data.data);
-		})
+	const navigate = useNavigate();
+
+	const fetchReviews = async () => {
+		await apiClient.get(`/api/review`)
+		.then((res) => {
+			setReviews(res.data.data.reverse());
+		});
+	};
+
+	const reviewId = async (id) => {
+		console.log('reviewId:')
+		navigate(`/review/${id}`);
 	}
 
-	// useEffect(() => {
-	// 	getReviews();
-	// }, []);
+	useEffect(() => {
+		fetchReviews();
+	}, []);
 
 	return(
 		<div>
-			<button onClick={getReviews}>Get Reviews</button>
 			{reviews.map((review, i)=>{
 				return(
+					<div>
 					<Review key={i} data={review}/>
+					<button onClick = {() => reviewId(review._id)}>View Review</button>
+					</div>
 				);
 			})}
 		</div>
