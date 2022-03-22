@@ -87,8 +87,8 @@ SECTION Mobile page details. Please make note of any changes
 */
 
 @media only screen and (max-width: 600px) {
-    body {
-      background-color: lightblue;
+    .App {
+      width:100vw;
     }
   }
   
