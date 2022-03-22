@@ -23,6 +23,8 @@ body{
     font-family: 'Overpass Mono', monospace;
     color: var(--secondary-offwhite);
     max-width: 1440px;
+    display: flex;
+    justify-content: center;
 }
 
 #logo{
@@ -81,21 +83,18 @@ input{
 SECTION Mobile page details. Please make note of any changes
 */
 
-@media only screen and (max-width: 600px) {
+@media only screen and (min-width: 600px) {
     .App {
-      width:100vw;
+      width:60vw;
     }
-
     img {
         max-height: 100vh;
     }
     button{
         font-size: 14pt;
     }
-
-
 }
-  
+
 
 /* !SECTION */
 /*
