@@ -206,7 +206,7 @@ export default function MakeReview() {
                         }
                     })}
                     value={data.body}
-                    placeholder="Please write reiew here."
+                    placeholder="Please write review here."
                     ></textarea>
                 </label><br/>
                 <label> 
