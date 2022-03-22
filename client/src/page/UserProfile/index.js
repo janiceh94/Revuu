@@ -9,19 +9,23 @@ export default function UserProfile(){
     const fetchUser = async () => {
 		await authService.getProfile()
 		.then((res) => {
-            console.log(res);
+            console.log("res",res);
 			setUsr(res.data.data);
-            console.log("usr",usr);
+            console.log("usr1",usr);
 		});
 	};
 
     useEffect(() => {
-		fetchUser();
+        fetchUser()
 	}, []);
+
+    useEffect(() => {
+        console.log("usr2", usr);
+	}, [usr]);
 
     return(
         <div>
-            <h2>User profile</h2>
+            <h2>{usr.email}</h2>
         </div>
     )
 }
