@@ -16,20 +16,13 @@ SECTION Desktop page details. Please make note of any changes
 */
 
 body{
-    margin: 0;
+    margin: 0 auto 0 auto;
     background: linear-gradient(180deg, var(--primary-color) 0%, var(--black) 15rem);
     background-color: var(--black);
     background-repeat: no-repeat;
     font-family: 'Overpass Mono', monospace;
-    color: var(--secondary-offwhite)
-}
-
-.App{
-    /* border-bottom: 1px red solid; */
-    margin: auto;
-    /* FIXME SUBJECT TO CHANGE FOR ADAPTIVE VIEW */
-    width: 350px;
-    min-height: 100vh;
+    color: var(--secondary-offwhite);
+    max-width: 1440px;
 }
 
 #logo{
@@ -38,9 +31,6 @@ body{
     font-family: 'Righteous', cursive;
 }
 
-h1{
-    
-}
 
 p{
     color: var(--secondary-offwhite);
@@ -95,7 +85,13 @@ SECTION Mobile page details. Please make note of any changes
     .App {
       width:100vw;
     }
-  }
+
+    img {
+        max-height: 100vh;
+    }
+
+
+}
   
 
 /* !SECTION */
@@ -116,9 +112,11 @@ SECTION PAGES: HEADER
 SECTION PAGES: FOOTER STICKY
 */
 #FootStick{
-    position: fixed;
+    position: sticky;
     margin-top: auto;
+    width: inherit;
     bottom:0;
+    left:inherit;
     background-color: var(--primary-color);
     display: flex;
     justify-content: space-around;
@@ -127,8 +125,6 @@ SECTION PAGES: FOOTER STICKY
 /*
 SECTION PAGES: FOOTER CR
 */
-#FootCR{
-}
 
 #FootCR > p {
     margin-bottom: auto;
@@ -145,12 +141,14 @@ SECTION PAGES: LANDING
     height:100vh;
     display: flex;
     flex-direction: column;
+    align-items:center;
 }
 #login > *{
     /* border: aqua 1px solid; */
     background-color: var(--secondary-gray);
     margin: 1rem;
-    padding: 1rem;
+    padding: 1rem 6rem 1rem 6rem;
+    max-width: 500px;
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -159,7 +157,8 @@ SECTION PAGES: LANDING
     /* border: aqua 1px solid; */
     background-color: var(--secondary-gray);
     margin: 1rem;
-    padding: 1rem;
+    padding: 1rem 6rem 1rem 6rem;
+    max-width: 500px;
     display: flex;
     flex-direction: column;
     align-items: center;
