@@ -6,15 +6,7 @@ import apiClient from '../../api/axios.config';
 export default function ShowReview() {
     const navigate  = useNavigate();
     let currentUserID = JSON.parse(`${localStorage.getItem("userID")}`);
-    const [review, setReview] = useState({
-        link: "https://picsum.photos/500?grayscale",
-        reviewItem: "Review Item-",
-        title: "Title-",
-        category: "Category-",
-        body: "body-",
-        rating: 3,
-        user: "6237ecb0df4acbfe23cc5ae7" //test@test.com
-    });
+    const [review, setReview] = useState({});
 
 	const getReview = async () => {
 		await apiClient.get(`/api/review/${window.location.pathname.split("/")[2]}`).then((res)=>{
@@ -52,7 +44,7 @@ export default function ShowReview() {
     if(currentUserID === review.user){
         return (
             <div className="showReview"> 
-                <div id="image">
+                <div className="image">
                     {checkImage()}
                 </div>
                 <h2>{review.title}</h2>
@@ -66,7 +58,7 @@ export default function ShowReview() {
                 <h4>Rating:
                 <p>{review.rating}</p>
                 </h4>
-                <button>Edit</button>
+                <button onClick={handleEdit}>Edit</button>
             </div>
         )
     } else {
@@ -86,7 +78,6 @@ export default function ShowReview() {
                 <h4>Rating:
                 <p>{review.rating}</p>
                 </h4>
-                <button onClick={handleEdit}>Edit</button>
             </div>
         )
     }

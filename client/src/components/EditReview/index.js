@@ -8,18 +8,10 @@ import * as reviewService from "../../api/review.service";
 export default function EditReview() {
     const navigate = useNavigate();
 
-    let [review, setReview] = useState({
-        link: "https://picsum.photos/500?grayscale",
-        reviewItem: "Review Item-",
-        title: "Title-",
-        category: "People",
-        body: "body-",
-        rating: 3,
-        user: "",
-    });
+    let [review, setReview] = useState({});
 
     const getReview = async () => {
-		await apiClient.get(`/api/review/${window.location.pathname.split("/")[2]}/edit`).then((res)=>{
+		await apiClient.get(`/api/review/${window.location.pathname.split("/")[2]}`).then((res)=>{
 			setReview(res.data.data);
             
 		})
@@ -34,9 +26,9 @@ export default function EditReview() {
         } else if (review.category === "Please Select") {
             alert("Please select a category.");
         } else {
-            await reviewService.create(review)
-                .then((createdReview) => {
-                    console.log(createdReview);
+            await reviewService.update(review._id, review)
+                .then((updatedReview) => {
+                    console.log(updatedReview);
                     setReview(prevreview => {
                         return {
                             ...prevreview, 
@@ -49,7 +41,7 @@ export default function EditReview() {
                             user: ""
                         }
                     })
-                    navigate(`/review/${createdReview.data.data._id}`)
+                    navigate(`/review/${review._id}`)
                 })
         };
     };
@@ -79,7 +71,7 @@ export default function EditReview() {
                 <img  id="image" src={review.link} alt="item_image"/>
                 <a id="reviewItem-link" href={review.link} target="_blank" rel="noreferrer">{review.reviewItem}</a>
             </div>
-            <form>
+            <form id="editForm">
             <label>
                 <br/>
                     <label>Image URL </label>
@@ -114,7 +106,7 @@ export default function EditReview() {
                     name="link"
                     id="link"
                     /> 
-                </label><br/>
+                </label><br/><br/>
                 <label> 
                 Title*
                 <br/>
@@ -130,7 +122,7 @@ export default function EditReview() {
                     value={review.title}
                     placeholder="Add title here."
                     />
-                </label><br/>
+                </label><br/><br/>
                 <label> 
                 Review Item*
                 <br/>
@@ -146,7 +138,7 @@ export default function EditReview() {
                     value={review.reviewItem}
                     placeholder="Add item here"
                     />
-                </label><br/>
+                </label><br/><br/>
                 <label htmlFor="selector"> 
                 Category*
                 <br/>
@@ -179,7 +171,7 @@ export default function EditReview() {
                         <option>People</option>
                         <option>Misc</option>
                     </select>
-                </label><br/>
+                </label><br/><br/>
                 <label> 
                 Review*
                 <br/>
@@ -195,7 +187,7 @@ export default function EditReview() {
                     value={review.body}
                     placeholder="Please write reiew here."
                     ></textarea>
-                </label><br/>
+                </label><br/><br/>
                 <label> 
                 Rating (0-5)*
                 <br/>
@@ -211,9 +203,12 @@ export default function EditReview() {
                     value={review.rating}
                     placeholder="Please rate between 0-5"
                     />
-                </label><br/>
+                </label><br/><br/>
             </form>
-            <button onClick={handleSubmit}>Update</button>
+            <div class="editButtons">
+                <button onClick={handleSubmit}>Update</button>
+                <button onClick={handleSubmit}>Delete</button>
+            </div>
         </div>
     )
 }
