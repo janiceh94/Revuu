@@ -8,7 +8,6 @@ function Header({isLoggedIn}) {
     function signOut(e) {
         e.preventDefault();
         authService.logout();
-        // console.log('logout');
         navigate("/");
         window.location.reload(false);
     }

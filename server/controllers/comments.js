@@ -6,11 +6,10 @@ const create = (req, res) => {
         db.User.findById(req.body.user, (err, commentingUser) => {
             if(err) {
                 return res.status(400).json({
-                    message: "Nope",
+                    message: "Unable to create comment",
                     error: err
                 })
             }
-            console.log("foundUser", commentingUser, "req.body", req.body);
             const newComment = req.body;
             foundReview.comments.push(newComment);
             commentingUser.comments.push(foundReview);
@@ -28,7 +27,7 @@ const update = (req, res) => {
     db.Review.findById(req.params.rid, (err, foundReview) => {
         if(err) {
             return res.status(400).json({
-                message: "Nope",
+                message: "Unable to update commment",
                 error: err
             })
         }
@@ -49,7 +48,7 @@ const destroy = (req, res) => {
     db.Review.findById(req.params.rid, (err, foundReview) => {
         if(err) {
             return res.status(400).json({
-                message: "Nope",
+                message: "Unable to delete comment",
                 error: err
             })
         }

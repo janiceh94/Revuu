@@ -8,24 +8,6 @@ function Landing({checkUserActive}) {
             <div className="landing">
             <Login id="Login" checkUserActive={checkUserActive}/>
             <Register id="Register"/>
-            {/* <NavLink to ='home'
-                style = {({isActive}) => ({
-                    color: isActive ? 'green' : 'blue'
-                })}>
-                    Home
-            </NavLink>
-            <NavLink to ='review'
-                style = {({isActive}) => ({
-                    color: isActive ? 'green' : 'blue'
-                })}>
-                    Write a Review
-            </NavLink>
-            <NavLink to ='profile'
-                style = {({isActive}) => ({
-                    color: isActive ? 'green' : 'blue'
-                })}>
-                    Profile
-            </NavLink> */}
             </div>
       </div>
     );
