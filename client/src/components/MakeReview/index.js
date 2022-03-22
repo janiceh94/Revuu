@@ -1,6 +1,7 @@
 import React from 'react';
+import axios from 'axios';
 import {useNavigate} from 'react-router-dom';
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import * as reviewService from "../../api/review.service";
 
 
@@ -17,6 +18,18 @@ export default function MakeReview() {
         rating: undefined,
         user: `${userID}` 
     });
+
+    const getImageUrl = async() => {
+        await axios.get("https://picsum.photos/500?grayscale")
+                .then((response) => {
+                    setData(prevData => {
+                        return {
+                            ...prevData, 
+                            link: response.request.responseURL
+                        }
+                    })
+                })
+    }
 
     const handleSubmit = async(e) => {
         e.preventDefault();
@@ -60,7 +73,12 @@ export default function MakeReview() {
                     link: prevData.link
                 }
             }
-        })}
+        })
+    }
+
+    useEffect(() => {
+        getImageUrl();
+    }, []);
 
     return(
         <div className="showReview"> 
