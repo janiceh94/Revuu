@@ -39,9 +39,16 @@ export default function EditReview() {
         };
     };
 
-    const handleDelete = (e) => {
+    const handleDelete = async(e) => {
         e.preventDefault();
-        console.log('here');
+
+        if(window.confirm("Are you sure you want to delete this review?") === true){
+            await reviewService.destroy(review._id)
+                    .then((err, deletedReview) => {
+                        alert("Review successfully deleted!");
+                        navigate("/home");
+                    })
+        };
     };
 
     const changeLink = () => {
