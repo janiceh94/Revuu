@@ -27,17 +27,17 @@ function ReviewsList(){
 
 	return(
 		<div>
-			{/* {reviews.map((review, i)=>{
+			<Review/>
+			<Review/>
+			<Review/>
+
+			{reviews.map((review, i)=>{
 				return(
 					<div onClick = {() => reviewId(review._id)}>
 					<Review key={i} data={review}/>
 					</div>
 				);
-			})} */}
-
-			<Review/>
-			<Review/>
-			<Review/>
+			})}
 		</div>
 	);
 }

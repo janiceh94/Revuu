@@ -1,19 +1,20 @@
 import apiClient from "../../../api/axios.config";
 import { useEffect, useState } from "react";
 function Review (props) {
-//     const [user, setUser] = useState({});
+    const [user, setUser] = useState({});
 
-//     const getUser = async () => {
-//         console.log("props.data.user",props.data.user)
-// 		await apiClient.get(`/api/user/${props.data.user}`).then((res)=>{
-//             setUser(res.data.data);
-//             console.log("res.data.data",res.data.data)
-// 		})
-// 	}
+    const getUser = async () => {
+        console.log("props.data.user",props.data.user)
+		await apiClient.get(`/api/user/${props.data.user}`).then((res)=>{
+            setUser(res.data.data);
+            console.log("res",res)
+		})
+	}
 
-//    useEffect(() => {
-// 		getUser();
-// 	}, []);
+   useEffect(() => {
+		getUser();
+        console.log(user);
+	}, []);
 
     return(
         // <div>
@@ -27,8 +28,9 @@ function Review (props) {
         //     </div>
         //     <p>{props.data.likes}</p>
         // </div>
-        <div>
+        <div className='reviewCard'>
             <h3>Title</h3>
+            <h5>ReviewImage</h5>
             <h5>ReviewItem</h5>
             <h5>DataCategory</h5>
             <h5>Name: Username</h5>
