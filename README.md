@@ -2,7 +2,7 @@
 
 ## Concept
 
-Revuu is an application that allows users to post/edit/delete their review on anything they like and give it a rating between 0 - 5. Users also have their own profile that they can edit and shows all the reviews they have created.
+Revuu is an application that allows users to post/edit/delete their review on anything they like and give it a rating between 0 - 5. Users also have their own profile that shows all the reviews they have created.
 
 ## User Stories
 
